@@ -1,0 +1,18 @@
+if(NOT LOG4CXX_LIBRARIES)
+    add_subdirectory (didactic/external/apr)
+    add_subdirectory (didactic/external/expat/expat-2.1.1)
+    add_subdirectory (didactic/external/apru)
+    #add_subdirectory (didactic/external/apri)
+    add_subdirectory (didactic/external/log4cxx)
+else(NOT LOG4CXX_LIBRARIES)
+    message (STATUS "LIBRARIES ${APR_LIBS}")
+endif(NOT LOG4CXX_LIBRARIES)
+
+#if((NOT CPPUNIT_LIBRARIES) OR (NOT GOOGLEMOCK_LIBRARIES))
+if(NOT CPPUNIT_LIBRARIES)
+    add_subdirectory (didactic/external/cppunit/cppunit-1.14.0)
+    add_subdirectory (didactic/external/googletest)
+else(NOT CPPUNIT_LIBRARIES)
+    message (STATUS "TEST LIBRARIES  ${CPPUNIT_LIBRARIES}")
+endif(NOT CPPUNIT_LIBRARIES)
+

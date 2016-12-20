@@ -1,0 +1,426 @@
+/*
+  CONFIG.hpp
+  this file is generated. Do not change!
+*/
+
+#ifndef DIDACTIC_CORE_CONFIG_HPP
+#define DIDACTIC_CORE_CONFIG_HPP
+/* Define to 1 if you have the `arc4random' function. */
+#cmakedefine HAVE_ARC4RANDOM
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#cmakedefine HAVE_DLFCN_H
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#cmakedefine HAVE_INTTYPES_H
+
+/* Define to 1 if you have the `m' library (-lm). */
+#cmakedefine HAVE_LIBM
+
+/* Define to 1 if you have the `pthread' library (-lpthread). */
+#cmakedefine HAVE_LIBPTHREAD
+
+/* Define to 1 if you have the <memory.h> header file. */
+#cmakedefine HAVE_MEMORY_H
+
+/* Define to 1 if you have the `memset' function. */
+#cmakedefine HAVE_MEMSET
+
+/* Define to 1 if you have the <netinet/in.h> header file. */
+#cmakedefine HAVE_NETINET_IN_H
+
+/* Define to 1 if stdbool.h conforms to C99. */
+#cmakedefine HAVE_STDBOOL_H
+
+/* Define to 1 if you have the <stddef.h> header file. */
+#cmakedefine HAVE_STDDEF_H
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#cmakedefine HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#cmakedefine HAVE_STDLIB_H
+
+/* Define to 1 if you have the <strings.h> header file. */
+#cmakedefine HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#cmakedefine HAVE_STRING_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#cmakedefine HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#cmakedefine HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#cmakedefine HAVE_UNISTD_H
+
+/* Define to 1 if the system has the type `_Bool'. */
+#cmakedefine HAVE__BOOL
+
+/* Define to 1 if you have the file `/dev/urandom'. */
+#cmakedefine HAVE__DEV_URANDOM
+
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
+#cmakedefine LT_OBJDIR
+
+/* Name of package */
+#cmakedefine PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#cmakedefine PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#cmakedefine PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#cmakedefine PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#cmakedefine PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#cmakedefine PACKAGE_URL
+
+/* Define to the version of this package. */
+#cmakedefine PACKAGE_VERSION
+
+/* Define to 1 if you have the ANSI C header files. */
+#cmakedefine STDC_HEADERS
+
+/* Version number of package */
+#cmakedefine VERSION
+
+/* Define for Solaris 2.5.1 so the uint32_t typedef from <sys/synch.h>,
+   <pthread.h>, or <semaphore.h> is not used. If the typedef were allowed, the
+   #define below would cause a syntax error. */
+#cmakedefine _UINT32_T
+
+/* Define for Solaris 2.5.1 so the uint64_t typedef from <sys/synch.h>,
+   <pthread.h>, or <semaphore.h> is not used. If the typedef were allowed, the
+   #define below would cause a syntax error. */
+#cmakedefine _UINT64_T
+
+/* Define for Solaris 2.5.1 so the uint8_t typedef from <sys/synch.h>,
+   <pthread.h>, or <semaphore.h> is not used. If the typedef were allowed, the
+   #define below would cause a syntax error. */
+#cmakedefine _UINT8_T
+
+/* Define to the type of a signed integer type of width exactly 32 bits if
+   such a type exists and the standard includes do not define it. */
+#cmakedefine int32_t
+
+/* Define to `unsigned int' if <sys/types.h> does not define. */
+#cmakedefine size_t
+
+/* Define to the type of an unsigned integer type of width exactly 16 bits if
+   such a type exists and the standard includes do not define it. */
+#cmakedefine uint16_t
+
+/* Define to the type of an unsigned integer type of width exactly 32 bits if
+   such a type exists and the standard includes do not define it. */
+#cmakedefine uint32_t
+
+/* Define to the type of an unsigned integer type of width exactly 64 bits if
+   such a type exists and the standard includes do not define it. */
+#cmakedefine uint64_t
+
+/* Define to the type of an unsigned integer type of width exactly 8 bits if
+   such a type exists and the standard includes do not define it. */
+#cmakedefine uint8_t
+#cmakedefine BUILD_AS_SHARED_LIBS
+#cmakedefine CORE_EXPORTS
+
+//check_function_exists(posix_spawn HAVE_POSIX_SPAWN)
+//check_function_exists(posix_spawnp HAVE_POSIX_SPAWNP)
+
+//configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+//include_directories(${CMAKE_CURRENT_BINARY_DIR})
+
+#cmakedefine HAVE_EXECVE
+#cmakedefine HAVE_EXECV
+#cmakedefine HAVE_EXECVPE
+#cmakedefine HAVE_EXECVP
+#cmakedefine HAVE_EXECVP2
+#cmakedefine HAVE_EXECT
+#cmakedefine HAVE_EXECL
+#cmakedefine HAVE_EXECLP
+#cmakedefine HAVE_EXECLE
+#cmakedefine HAVE_POSIX_SPAWN
+#cmakedefine HAVE_POSIX_SPAWNP
+
+#if defined(WIN32)
+  #define ABI_EXPORT __declspec(dllexport)
+  #define ABI_IMPORT __declspec(dllimport)
+  #define ABI_LOCAL
+#else
+    #if __GNUC__ >= 4
+        #define ABI_EXPORT __attribute__ ((visibility ("default")))
+        #define ABI_IMPORT __attribute__ ((visibility ("default")))
+        #define ABI_LOCAL  __attribute__ ((visibility ("hidden")))
+    #else
+        #define ABI_EXPORT
+        #define ABI_IMPORT
+        #define ABI_LOCAL
+    #endif
+#endif
+
+#ifdef BUILD_AS_SHARED_LIBS
+  // We are building a shared lib
+  #ifdef CppMicroServices_EXPORTS
+    #define US_EXPORT US_ABI_EXPORT
+  #else
+    #define US_EXPORT US_ABI_IMPORT
+  #endif
+#else
+  // We are building a static lib
+  // Don't hide RTTI symbols of definitions in the C++ Micro Services
+  // headers that are included in DSOs with hidden visibility
+  #define US_EXPORT US_ABI_EXPORT
+#endif
+
+//-------------------------------------------------------------------
+// Namespace customization
+//-------------------------------------------------------------------
+
+#define US_NAMESPACE @US_NAMESPACE@
+
+#ifndef US_NAMESPACE /* user namespace */
+
+  # define US_PREPEND_NAMESPACE(name) ::name
+  # define US_USE_NAMESPACE
+  # define US_BEGIN_NAMESPACE
+  # define US_END_NAMESPACE
+  # define US_FORWARD_DECLARE_CLASS(name) class name;
+  # define US_FORWARD_DECLARE_STRUCT(name) struct name;
+
+#else /* user namespace */
+
+  # define US_PREPEND_NAMESPACE(name) ::US_NAMESPACE::name
+  # define US_USE_NAMESPACE using namespace ::US_NAMESPACE;
+  # define US_BEGIN_NAMESPACE namespace US_NAMESPACE {
+  # define US_END_NAMESPACE }
+  # define US_FORWARD_DECLARE_CLASS(name) \
+    US_BEGIN_NAMESPACE class name; US_END_NAMESPACE
+
+  # define US_FORWARD_DECLARE_STRUCT(name) \
+    US_BEGIN_NAMESPACE struct name; US_END_NAMESPACE
+
+  namespace US_NAMESPACE {}
+
+#endif /* user namespace */
+
+//-------------------------------------------------------------------
+// Platform defines
+//-------------------------------------------------------------------
+
+#if defined(__APPLE__)
+  #define US_PLATFORM_APPLE
+#endif
+
+#if defined(__linux__)
+  #define US_PLATFORM_LINUX
+#endif
+
+#if defined(_WIN32) || defined(_WIN64)
+  #define US_PLATFORM_WINDOWS
+#else
+  #define US_PLATFORM_POSIX
+#endif
+
+
+#define DISABLE_COPY(Class) \
+    Class(const Class &) DECL_EQ_DELETE;\
+    Class &operator=(const Class &) DECL_EQ_DELETE;
+
+#ifdef COMPILER_NULLPTR
+    # define NULLPTR    nullptr
+#else
+    # define NULLPTR    NULL
+#endif
+
+#ifdef COMPILER_DEFAULT_MEMBERS
+    #  define DECL_EQ_DEFAULT = default
+#else
+    #  define DECL_EQ_DEFAULT
+#endif
+
+#ifdef COMPILER_DELETE_MEMBERS
+    # define DECL_EQ_DELETE = delete
+#else
+    # define DECL_EQ_DELETE
+#endif
+
+
+#ifdef COMPILER_EXPLICIT_OVERRIDES
+# define    DECL_OVERRIDE override
+# define    DECL_FINAL final
+#else
+# ifndef    DECL_OVERRIDE
+#  define   DECL_OVERRIDE
+# endif
+# ifndef    DECL_FINAL
+#  define   DECL_FINAL
+# endif
+#endif
+
+//-------------------------------------------------------------------
+// Macros for suppressing warnings
+//-------------------------------------------------------------------
+
+#ifdef _MSC_VER
+#define US_MSVC_PUSH_DISABLE_WARNING(wn) \
+__pragma(warning(push))                  \
+__pragma(warning(disable:wn))
+#define US_MSVC_POP_WARNING \
+__pragma(warning(pop))
+#define US_MSVC_DISABLE_WARNING(wn) \
+__pragma(warning(disable:wn))
+#else
+#define US_MSVC_PUSH_DISABLE_WARNING(wn)
+#define US_MSVC_POP_WARNING
+#define US_MSVC_DISABLE_WARNING(wn)
+#endif
+
+// Do not warn about the usage of deprecated unsafe functions
+US_MSVC_DISABLE_WARNING(4996)
+
+// Mark a variable or expression result as unused
+#define US_UNUSED(x) (void)(x)
+
+//-------------------------------------------------------------------
+// Debuging & Logging
+//-------------------------------------------------------------------
+
+#cmakedefine US_ENABLE_DEBUG_OUTPUT
+
+US_BEGIN_NAMESPACE
+  enum MsgType { DebugMsg = 0, InfoMsg = 1, WarningMsg = 2, ErrorMsg = 3 };
+  typedef void (*MsgHandler)(MsgType, const char *);
+  US_EXPORT MsgHandler installMsgHandler(MsgHandler);
+US_END_NAMESPACE
+
+//-------------------------------------------------------------------
+// Hash Container
+//-------------------------------------------------------------------
+
+#ifdef US_HAVE_UNORDERED_MAP_H
+  #include <unordered_map>
+#elif defined(US_HAVE_TR1_UNORDERED_MAP_H)
+  #include <tr1/unordered_map>
+#endif
+
+#ifdef US_HAVE_UNORDERED_SET_H
+  #include <unordered_set>
+#elif defined(US_HAVE_TR1_UNORDERED_SET_H)
+  #include <tr1/unordered_set>
+#endif
+
+#ifdef US_HAVE_STD_UNORDERED_MAP
+  #define US_UNORDERED_MAP_TYPE ::std::unordered_map
+#elif defined(US_HAVE_TR1_UNORDERED_MAP)
+  #define US_UNORDERED_MAP_TYPE ::std::tr1::unordered_map
+#endif
+
+#ifdef US_HAVE_STD_UNORDERED_SET
+  #define US_UNORDERED_SET_TYPE ::std::unordered_set
+#elif defined(US_HAVE_TR1_UNORDERED_SET)
+  #define US_UNORDERED_SET_TYPE ::std::tr1::unordered_set
+#endif
+
+#ifdef US_HAVE_STD_HASH
+  #define US_HASH_FUNCTION_NAMESPACE ::std
+  #ifdef US_HAVE_STD_HASH_STRUCT
+    #define US_HASH_FUNCTION_FRIEND(type) friend struct ::std::hash<type>
+  #elif defined(US_HAVE_STD_HASH_CLASS)
+    #define US_HASH_FUNCTION_FRIEND(type) friend class ::std::hash<type>
+  #endif
+  #define US_HASH_FUNCTION_NAMESPACE_BEGIN namespace std {
+  #define US_HASH_FUNCTION_NAMESPACE_END }
+#elif defined(US_HAVE_TR1_HASH)
+  #define US_HASH_FUNCTION_NAMESPACE ::std::tr1
+  #ifdef US_HAVE_TR1_HASH_STRUCT
+    #define US_HASH_FUNCTION_FRIEND(type) friend struct ::std::tr1::hash<type>
+  #elif defined(US_HAVE_TR1_HASH_CLASS)
+    #define US_HASH_FUNCTION_FRIEND(type) friend class ::std::tr1::hash<type>
+  #endif
+  #define US_HASH_FUNCTION_NAMESPACE_BEGIN namespace std { namespace tr1 {
+  #define US_HASH_FUNCTION_NAMESPACE_END }}
+#endif
+
+#define US_HASH_FUNCTION_BEGIN(type) \
+template<> \
+struct hash<type> : std::unary_function<type, std::size_t> { \
+std::size_t operator()(const type& arg) const {
+
+#define US_HASH_FUNCTION_END } };
+
+#define US_HASH_FUNCTION(type, arg) hash<type>()(arg)
+
+inline void noope(void) 
+{
+    true; //take a litle time ;
+}
+
+/*!
+ * How to
+ * 
+
+    std::function<void(int)> f1 = noop{};
+    f1(3);
+    std::function<int(std::string, char, double)> f2 = noop{};
+    
+    std::function<std::string const&(int)> f3 = noop{};
+    
+    int x = noop::anything{};
+    (void)x;
+    int const& y = noop::anything{};
+    (void)y;
+    
+    std::cout << "f3 creates: " << f3(2) << std::endl;
+*/
+class NoOp 
+{
+    class anything 
+    {
+        template<class T>
+        operator T()
+        { 
+            return {}; 
+        }
+
+        // optional reference support.  Somewhat evil.
+        template<class T>
+        operator const T&()const
+        { 
+            static T t{}; 
+            return t; 
+        }
+    };
+	
+    template<class...Args>
+    anything operator()(Args&&...)const
+    {
+        return {};
+    }
+	
+    template<class...Args>
+    operator std::function<void(Args...)>() 
+    {
+        return [](auto&&...){};
+    }
+	
+    template <typename RESULT, typename... Args>
+    std::function<RESULT(Args...)> getFuncNoOp()
+    {
+            // && avoids unnecessary copying. Thanks @Yakk
+            return [](Args&&...) 
+        { 
+            return RESULT(); 
+        }; 
+    }	
+};
+#endif
+
+
