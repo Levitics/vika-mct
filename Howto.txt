@@ -1,0 +1,10 @@
+Compilatin option set in Netbeans
+    cmake -DPROJECT_NAME=Sphynx -Wno-dev -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../..
+    cmake -DPROJECT_NAME=Sphynx -Wno-dev -G Unix Makefiles -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/bin/gcc 
+          -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DENABLE_CPPLINT=ON 
+          -DENABLE_FORMATING_STYLE=ON -DENABLE_CPPCHECK=ON ../..
+    CMAKE -DPROJECT_NAME="Sphynx" -Wno-dev  -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} 
+            -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  -DENABLE_CPPLINT=ON -DENABLE_FORMATING_STYLE=ON  
+            -DENABLE_CPPCHECK=ON -DENABLE_CYCLOMATIC_COMPLEXITY=ON ../..
+cppcheck-htmlreport dependencies
+    sudo apt-get install python-pygments

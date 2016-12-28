@@ -159,10 +159,14 @@
         #define ABI_EXPORT __attribute__ ((visibility ("default")))
         #define ABI_IMPORT __attribute__ ((visibility ("default")))
         #define ABI_LOCAL  __attribute__ ((visibility ("hidden")))
+        #define DLL_PUBLIC __attribute__ ((visibility("default")))
+        #define DLL_LOCAL  __attribute__ ((visibility("hidden")))
     #else
         #define ABI_EXPORT
         #define ABI_IMPORT
         #define ABI_LOCAL
+        #define DLL_PUBLIC
+        #define DLL_LOCAL
     #endif
 #endif
 

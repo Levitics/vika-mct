@@ -50,7 +50,7 @@ function(AssureOutOfSourceBuilds project_name)
     message("###########################################################################")
     message(FATAL_ERROR "Quitting configuration")
   else()  
-    message(STATUS "OUT of source build configuration")
+    #message(STATUS "OUT of source build configuration")
   endif()
 endfunction()
 
@@ -67,6 +67,3 @@ endif()
 
 AssureOutOfSourceBuilds(${PROJECT_NAME})
 #AssureOutOfSourceBuilds(${CMAKE_PROJECT_NAME})
-
-
-

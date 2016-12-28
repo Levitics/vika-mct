@@ -1,3 +1,4 @@
+
 #ifndef PAINTERTEST_HPP
 #define PAINTERTEST_HPP
 #include <didactics/core/Test.hpp>
@@ -9,21 +10,27 @@
 
 using ::testing::AtLeast;
 
-class PainterTest  : public CppUnit::TestFixture {
+class PainterTest : public CppUnit::TestFixture
+{
     CPPUNIT_TEST_SUITE(PainterTest);
     CPPUNIT_TEST(canDrawSomething);
     CPPUNIT_TEST_SUITE_END();
+
 public:
+
     PainterTest();
     PainterTest(const PainterTest& orig);
     virtual ~PainterTest();
+
 protected:
-    void canDrawSomething();
+
+    void canDrawSomething ();
+
 private:
-    Painter * objectUnderTest; 
+
+    Painter * objectUnderTest;
     MockTurtle * turtleMock;
     log4cxx::LoggerPtr logger;
 };
 
 #endif
-

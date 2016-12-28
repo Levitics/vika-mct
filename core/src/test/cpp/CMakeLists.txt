@@ -1,20 +1,17 @@
 include_directories(.)
 
-#include_directories(${CPPUNIT_INCLUDE_DIR} 
-#${PROJECT_NAME}Core_INCLUDE_DIRS
-#)
-add_definitions(-DPROJECT_ARTIFACTID="coreTestSuite")
-
 set(CORE_SOURCES  
         didactics/Test.cpp
         didactics/core/Test.cpp
         didactics/core/exple/DelegateMockTurtle.cpp
         didactics/core/exple/FakeTurtle.cpp
         didactics/core/exple/MockTurtle.cpp
+        didactics/core/exple/MockTimer.cpp
         didactics/core/exple/PainterTest.cpp
         didactics/core/exple/TurtleTest.cpp
         didactics/core/exple/SimpleTurtleTest.cpp
         didactics/core/exple/ExtendedTurtleTest.cpp
+        didactics/core/exple/TimerTest.cpp
 #        didactics/core/log/LoggerTest.cpp
 #        didactics/core/log/Hierarchy.cpp
 
@@ -29,8 +26,8 @@ set(CORE_SOURCES
 #        gmock 
 #        gmock_main 
 #        cppunit)
-add_executable(${PROJECT_NAME}CoreTest.exe didactics/main.cpp ${CORE_SOURCES})
-target_link_libraries (${PROJECT_NAME}CoreTest.exe 
+add_executable(${PROJECT_NAME}CoreTest.bin didactics/main.cpp ${CORE_SOURCES})
+target_link_libraries (${PROJECT_NAME}CoreTest.bin 
                         ${LOG4CXX_LIBRARIES}
                         ${APU_LIBS}
                         ${APR_LIBS}
@@ -42,6 +39,20 @@ target_link_libraries (${PROJECT_NAME}CoreTest.exe
 #                        ${PROJECT_NAME}CoreTest 
                         ${PROJECT_NAME}Core
 )
+
+if(ENABLE_COVERAGE)
+   add_coverage_targets(${PROJECT_NAME}CoreTest.bin ${PROJECT_NAME}CoreTest ${CORE_MODULE_ROOT_DIRECTORY})
+endif(ENABLE_COVERAGE)
+
+#if(ENABLE_CPPLINT)
+#    CPPLINT_RECURSIVE(
+#        ${PROJECT_NAME}CoreTestLint                              #target_name.The name of the target to define. Your program should depend on it to invoke cpplint.
+#        ${CMAKE_CURRENT_SOURCE_DIR}/didactics/core           #src_folder.The folder to recursively run cpplint.
+#        ${CORE_MODULE_ROOT_DIRECTORY}                        #root_folder.The root folder used to determine desired include-guard comments.
+#        "${TARGET_BUILD_DIRECTORY}/lint/${PROJECT_NAME}CoreTest" #bin_folder.The temporary build folder to store a cpplint history file.
+#    )
+#endif(ENABLE_CPPLINT)
+
  #${CPPUNIT_LIBRARIES} cppunit.d log4cxx aprutil-1 apr-1 gmock gmock_main
 #link_libraries(
     #-lcppunit.d 
@@ -49,8 +60,6 @@ target_link_libraries (${PROJECT_NAME}CoreTest.exe
     #-laprutil-1 
     #-lapr-1  #+1  avoid typeinfo for log4cxx::helpers::ObjectPtrBase ISUES
 #)
-
-#find_package(GoogleMock)
 
 include_directories(
     /home/happyman/NetBeansProjects/didactics/core/src/main/cpp/
@@ -66,7 +75,7 @@ include_directories(
     ${GOOGLEMOCK_INCLUDE_DIR}
 
 )
- message(STATUS "TEST_LIBRARIESTEST_LIBRARIESTEST_LIBRARIESTEST_LIBRARIES ${TEST_LIBRARIES}")
+# message(STATUS "TEST_LIBRARIESTEST_LIBRARIESTEST_LIBRARIESTEST_LIBRARIES ${TEST_LIBRARIES}")
 #target_include_directories(${PROJECT_NAME}Core PUBLIC didactics)
 #target_link_libraries (${PROJECT_NAME}CoreTest ${PROJECT_NAME}Core ${GOOGLEMOCK_LIBRARIES} "/home/happyman/NetBeansProjects/didactics/build/Debug/lib/libcppunit.a")
 #link_directories ("/home/happyman/NetBeansProjects/didactics/build/Debug/lib")

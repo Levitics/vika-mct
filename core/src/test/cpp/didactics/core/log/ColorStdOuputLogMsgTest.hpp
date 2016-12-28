@@ -1,27 +1,33 @@
+
 #ifndef COLORSTDOUPUTLOGMSGTEST_HPP
 #define COLORSTDOUPUTLOGMSGTEST_HPP
 #include <didactics/Test.hpp>
-class ColorStdOuputLogMsgTest  : public CppUnit::TestFixture{
+class ColorStdOuputLogMsgTest : public CppUnit::TestFixture
+{
     CPPUNIT_TEST_SUITE(ColorStdOuputLogMsgTest);
     CPPUNIT_TEST(dummy);
-    CPPUNIT_TEST_SUITE_END();     
+    CPPUNIT_TEST_SUITE_END();
+
 public:
+
     ColorStdOuputLogMsgTest();
     ColorStdOuputLogMsgTest(const ColorStdOuputLogMsgTest& orig);
     virtual ~ColorStdOuputLogMsgTest();
     /**
      * @brief Test set up.
      */
-    void setUp();
+    void setUp ();
     /**
      * @brief Test tear down.
      */
-    void tearDown();
+    void tearDown ();
+
 protected:
-    void dummy();    
+
+    void dummy ();
+
 private:
 
 };
 
 #endif
-

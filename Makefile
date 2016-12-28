@@ -18,7 +18,7 @@ BUILD?=build
 VERBOSE?=0
 PARALLEL_JOBS?=1
 CMAKE?=cmake
-TOOLCHAIN_FILE=#./cmake/rpi-toolchain.cmake
+TOOLCHAIN_FILE=#./cmake/codesourcery-arm-toolchain.cmake
 
 all: package
 
@@ -117,7 +117,7 @@ else
     endif
 endif
 BUILD_TYPE              := $(shell echo $(CMAKE_BUILD_TYPE) | tr '[A-Z]' '[a-z]')
-CMAKE_ARGS		=  -DALLOW_COMPILER_WARNINGS=$(ALLOW_COMPILE_WARNINGS) -DCMAKE_BUILD_TYPE=$(CMAKE_BUILD_TYPE)
+CMAKE_ARGS		=  -DALLOW_COMPILE_WARNINGS=$(ALLOW_COMPILE_WARNINGS) -DCMAKE_BUILD_TYPE=$(CMAKE_BUILD_TYPE)
 
 BUILD_DIR		= $(ARCH)-$(SUB)-$(VENDOR)-$(SYS)-$(ABI)-$(BUILD_TYPE)
 

@@ -1,36 +1,45 @@
-include(CMakeParseArguments)
-set(UNCRUSTIFY_EXE "uncrustify")
-
 #set (UNCRUSTIFY_CONFIG "${PROJECT_SOURCE_DIR}/src/main/resources/config/style.cfg")
-set (UNCRUSTIFY_CONFIG "${PROJECT_SOURCE_DIR}/src/main/resources/config/uncrustify.cfg")
+#set (UNCRUSTIFY_CONFIG "${PROJECT_SOURCE_DIR}/src/main/resources/config/uncrustify.cfg")
+set (UNCRUSTIFY_CONFIG "${PROJECT_SOURCE_DIR}/src/main/resources/config/raw.style.cfg")
+set(UNCRUSTIFY_FLAGS --no-backup -l CPP  -c ${UNCRUSTIFY_CONFIG})
+if(ENABLE_FORMATING_STYLE)
+    find_program(UNCRUSTIFY uncrustify)
+    if(UNCRUSTIFY)
+        execute_process(
+            COMMAND ${UNCRUSTIFY} --version OUTPUT_VARIABLE UNCRUSTIFY_VERSION
+            OUTPUT_STRIP_TRAILING_WHITESPACE)
+            string(REGEX REPLACE ".+([0-9]+\\.[0-9]+)" "\\1" UNCRUSTIFY_VERSION ${UNCRUSTIFY_VERSION}
+        )
+#        message(STATUS "${UNCRUSTIFY} : ${UNCRUSTIFY_VERSION}")
+        mark_as_advanced(UNCRUSTIFY)
 
-macro(UNCRUSTIFY_CMD VAR input output)
-    set(cmd "${UNCRUSTIFY_PATH}")
-    list(APPEND cmd -c ${UNCRUSTIFY_CONFIG})
-    list(APPEND cmd -f ${input})
-#    list(APPEND cmd -o ${output})
-    list(APPEND cmd -L 2)
-    display(${VAR})
-    set(${VAR} "${cmd}")
-endmacro(UNCRUSTIFY_CMD)
+    endif(UNCRUSTIFY)
 
-add_custom_target(uncrustify
-                COMMENT "Prettying source code with uncrustify")
+else(ENABLE_FORMATING_STYLE)
+    message(STATUS "Formating style Skipped!")
+endif(ENABLE_FORMATING_STYLE)
 
-function(UncrustifyDir file_list_var)
-    get_filename_component(THIS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp" NAME)
-    set(THIS_TS "${CMAKE_CURRENT_SOURCE_DIR}/.uncrustify_time")
+function(apply_style_targets STYLE_TARGET BASE_DIRECTORY)
+    if(UNCRUSTIFY)
+        if(NOT TARGET ${STYLE_TARGET}-style) 
+            file(GLOB_RECURSE SRC ${BASE_DIRECTORY} *.cpp *.hpp)
+            add_custom_target(${STYLE_TARGET}-style
+                COMMENT "[STYLE-Target:${STYLE_TARGET}] ${BASE_DIRECTORY}"
+#                COMMENT "Beautifying ${STYLE_TARGET} source code with uncrustify ${BASE_DIRECTORY}"
+                COMMAND "${UNCRUSTIFY}"  ${UNCRUSTIFY_FLAGS} ${SRC}
+                WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+            )
+        endif()
+    else(UNCRUSTIFY)
+        add_custom_target(${STYLE_TARGET}-style COMMAND ${CMAKE_COMMAND} -E echo "NO Code formating applied")
+    endif(UNCRUSTIFY)
 
-    add_custom_command(
-        OUTPUT "${THIS_TS}"
-        COMMAND "${UNCRUSTIFY_EXE}" --replace --no-backup -c "${UNCRUSTIFY_CONFIG}" ${${file_list_var}}
-        COMMAND touch "${THIS_TS}"
-        DEPENDS ${${file_list_var}} "${UNCRUSTIFY_CONFIG}"
-        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
-        COMMENT "Uncrustifying ${THIS_DIR}")
+    if(NOT TARGET style)
+        add_custom_target(style
+            COMMENT "Prettying source code with uncrustify"
+        )
+    endif()
 
-    add_custom_target(
-        "uncrustify-${THIS_DIR}"
-        DEPENDS "${THIS_TS}")
-        add_dependencies(uncrustify "uncrustify-${THIS_DIR}")
+    add_dependencies(style ${STYLE_TARGET}-style)
+
 endfunction()

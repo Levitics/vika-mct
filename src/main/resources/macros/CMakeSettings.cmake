@@ -1,3 +1,7 @@
+#set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_COLOR_MAKEFILE ON)
+#set(CMAKE_RULE_MESSAGES ON)
+
    # Always include srcdir and builddir in include path
    # This saves typing ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} in about every subdir
    # since cmake 2.4.0

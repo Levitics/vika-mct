@@ -26,7 +26,7 @@ find_program(PYTHON python)
 find_file(CPPLINT 
     NAMES cpplint
 #    PATHS ${CMAKE_CURRENT_LIST_DIR} 
-    PATHS /home/happyman/NetBeansProjects/didactics/src/main/resources/scripts/
+    PATHS ${PROJECT_SOURCE_DIR}/src/main/resources/scripts/
     DOC "Path to cpplint"
 )
 
