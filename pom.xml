@@ -8,132 +8,135 @@
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0           
-		 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	<!--                               INFORMATIONS                              -->
-	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	<groupId>com.acme.vilcoyote</groupId>
-	<artifactId>adafars-uavuas-ocugcs</artifactId>
-	<version>1.0-SNAPSHOOT</version>
-	<packaging>pom</packaging>
-	</description>
-	<url>http://www.levitics.com/adafars</url>
-	<inceptionYear>2014</inceptionYear>
-	<organization>
-		<name>The Levitics Software Engineering Lab</name>
-		<url>http://www.levitics.com/</url>
-	</organization>
-	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	<!--                                 LICENSE                                 -->
-	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0           
+         http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                               INFORMATIONS                              -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <groupId>com.acme.vilcoyote</groupId>
+    <artifactId>adafars-uavuas-ocugcs</artifactId>
+    <version>1.0-SNAPSHOOT</version>
+    <packaging>pom</packaging>
+    <description></description>
+    <url>http://www.levitics.com/adafars</url>
+    <inceptionYear>2014</inceptionYear>
+    <organization>
+        <name>The Levitics Software Engineering Lab</name>
+        <url>http://www.levitics.com/</url>
+    </organization>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                                 LICENSE                                 -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-	<licenses>
-		<license>
-			<name>THE APACHE SOFTWARE LICENSE, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-			<comments>Open Source Licenses.</comments>
-		</license>
-		<license>
-			<name>GNU GENERAL PUBLIC LICENSE Version 3</name>
-			<url>${licenses-header-path}/licenses/GPL-3.0.txt</url>
-			<distribution>repo</distribution>
-			<comments>Open Source Licenses.</comments>
-		</license>
-		<license>
-			<name>GNU LESSER GENERAL PUBLIC LICENSE Version 3</name>
-			<url>${licenses-header-path}/licenses/LGPL-3.0.txt</url>
-			<distribution>repo</distribution>
-			<comments>Open Source Licenses.</comments>
-		</license>        
-		<license>
-			<name>WTFPL - Do What The Fuck You Want To Public License</name>
-			<url>http://www.wtfpl.net/</url>
-			<distribution>repo</distribution>
-			<comments>Open Source Licenses.</comments>
-		</license>
-	</licenses>        
-	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	<!--                                DEVELOPERS                               -->
-	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <licenses>
+        <license>
+            <name>THE APACHE SOFTWARE LICENSE, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>Open Source Licenses.</comments>
+        </license>
+        <license>
+            <name>GNU GENERAL PUBLIC LICENSE Version 3</name>
+            <url>${licenses-header-path}/licenses/GPL-3.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>Open Source Licenses.</comments>
+        </license>
+        <license>
+            <name>GNU LESSER GENERAL PUBLIC LICENSE Version 3</name>
+            <url>${licenses-header-path}/licenses/LGPL-3.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>Open Source Licenses.</comments>
+        </license>        
+        <license>
+            <name>WTFPL - Do What The Fuck You Want To Public License</name>
+            <url>http://www.wtfpl.net/</url>
+            <distribution>repo</distribution>
+            <comments>Open Source Licenses.</comments>
+        </license>
+    </licenses>        
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                                DEVELOPERS                               -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-	<developers>
-		<developer>
-			<id>101</id>
-			<name>Lone Wolf</name>
-			<email>lone.wolf@${mailUrl}</email>
-			<url/>
-			<organization>${project.organization.name}</organization>
-			<organizationUrl>${project.organization.url}</organizationUrl>
-			<roles>
-				<role>architect</role>
-				<role>developer</role>
-				<role>tester</role>
-			</roles>
-			<timezone>+1</timezone>
-			<properties>
-				<picUrl>http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y</picUrl>
-			</properties>
-		</developer>
-	</developers>
-	<!--
+    <developers>
+        <developer>
+            <id>101</id>
+            <name>Lone Wolf</name>
+            <email>lone.wolf@${mailUrl}</email>
+            <url/>
+            <organization>${project.organization.name}</organization>
+            <organizationUrl>${project.organization.url}</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+                <role>tester</role>
+            </roles>
+            <timezone>+1</timezone>
+            <properties>
+                <picUrl>http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y</picUrl>
+            </properties>
+        </developer>
+    </developers>
+    <!--
                                     *** PROJECT Contributors ***
         -->
 
-	<contributors>
-		<contributor>
-			<name>Jane  Doe</name>
-			<email>jane.doe@acme.com</email>
-			<url/>
-			<organization>${project.organization.name}</organization>
-			<organizationUrl>${project.organization.url}</organizationUrl>
-			<roles>
-				<role>developer</role>
-				<role>tester</role>
-			</roles>
-			<timezone>+1</timezone>
-			<properties>
-				<picUrl>http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y</picUrl>
-			</properties>
-		</contributor>
-	</contributors>
-	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	<!--                                PROPERTIES                               -->
-	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	<properties>
-		<global.encoding>UTF-8</global.encoding>
-		<project.build.sourceEncoding>${global.encoding}</project.build.sourceEncoding>
-		<project.build.outputEncoding>${global.encoding}</project.build.outputEncoding>
-		<project.reporting.outputEncoding>${global.encoding}</project.reporting.outputEncoding> 
-                <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
-                <exec-maven-plugin.version>1.4.0</exec-maven-plugin.version>
-                <cmake.command>cmake</cmake.command>
-                <make.command>make</make.command>
-                <sonar.language>c++</sonar.language>
-		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.cxx.cppcheck.reportPath>.sonar/reports-cppcheck/cppcheck-result-*.xml</sonar.cxx.cppcheck.reportPath>		
-		<sonar.cxx.customrules.reportPath>.sonar/reports-cpplint/cpplint-result-*.xml</sonar.cxx.customrules.reportPath>
-		<sonar.cxx.rats.reportPath>.sonar/reports-rats/rats-result-*.xml</sonar.cxx.rats.reportPath>
-		<sonar.cxx.vera.reportPath>.sonar/reports-vera++/vera++-result-*.xml</sonar.cxx.vera.reportPath>
-		<sonar.cxx.xunit.reportPath>.sonar/reports-xunit/xunit-result-*.xml</sonar.cxx.xunit.reportPath>		
-		<sonar.cxx.bulleyescoverage.reportPath>.sonar/reports-bullseye/bullseyecoverage-result-*.xml</sonar.cxx.bulleyescoverage.reportPath>
-		<sonar.cxx.bulleyescoverage.itReportPath>.sonar/reports-it-bullseye/bullseyecoverage-result-*.xml</sonar.cxx.bulleyescoverage.itReportPath> 
-		<sonar.cxx.bulleyescoverage.calcomplexity>true</sonar.cxx.bulleyescoverage.calcomplexity>			
-		<sonar.host.url>http://latest-fiasco:9000</sonar.host.url>                
-                <cmake.generator.win32>Visual Studio 14 2015</cmake.generator.win32>
-                <cmake.generator.win64>Visual Studio 14 2015 Win64</cmake.generator.win64>
-                <cmake.generator.mingw>MinGW Makefiles</cmake.generator.mingw>
-                <cmake.generator.unix>Unix Makefiles</cmake.generator.unix>                
-		<hostname>${env.HOSTNAME}</hostname>
-		<osname>${env.VARNAME}</osname>
-		<nproc>${env.NUMBER_OF_PROCESSORS}</nproc>
-		<os>${env.OS}</os>
-                <computer>${env.COMPUTERNAME}</computer>
-                <arch>${env.PROCESSOR_ARCHITECTURE}</arch>
-	</properties>
+    <contributors>
+        <contributor>
+            <name>Jane  Doe</name>
+            <email>jane.doe@acme.com</email>
+            <url/>
+            <organization>${project.organization.name}</organization>
+            <organizationUrl>${project.organization.url}</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>tester</role>
+            </roles>
+            <timezone>+1</timezone>
+            <properties>
+                <picUrl>http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y</picUrl>
+            </properties>
+        </contributor>
+    </contributors>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                                PROPERTIES                               -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <properties>
+        <global.encoding>UTF-8</global.encoding>
+        <project.build.sourceEncoding>${global.encoding}</project.build.sourceEncoding>
+        <project.build.outputEncoding>${global.encoding}</project.build.outputEncoding>
+        <project.reporting.outputEncoding>${global.encoding}</project.reporting.outputEncoding> 
+        <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
+        <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
+		<maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+		<maven-site-plugin.version>3.6</maven-site-plugin.version>
+        <cmake.command>cmake</cmake.command>
+        <make.command>make</make.command>
+        <sonar.language>c++</sonar.language>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.cxx.cppcheck.reportPath>.sonar/reports-cppcheck/cppcheck-result-*.xml</sonar.cxx.cppcheck.reportPath>        
+        <sonar.cxx.customrules.reportPath>.sonar/reports-cpplint/cpplint-result-*.xml</sonar.cxx.customrules.reportPath>
+        <sonar.cxx.rats.reportPath>.sonar/reports-rats/rats-result-*.xml</sonar.cxx.rats.reportPath>
+        <sonar.cxx.vera.reportPath>.sonar/reports-vera++/vera++-result-*.xml</sonar.cxx.vera.reportPath>
+        <sonar.cxx.xunit.reportPath>.sonar/reports-xunit/xunit-result-*.xml</sonar.cxx.xunit.reportPath>        
+        <sonar.cxx.bulleyescoverage.reportPath>.sonar/reports-bullseye/bullseyecoverage-result-*.xml</sonar.cxx.bulleyescoverage.reportPath>
+        <sonar.cxx.bulleyescoverage.itReportPath>.sonar/reports-it-bullseye/bullseyecoverage-result-*.xml</sonar.cxx.bulleyescoverage.itReportPath> 
+        <sonar.cxx.bulleyescoverage.calcomplexity>true</sonar.cxx.bulleyescoverage.calcomplexity>            
+        <sonar.host.url>http://latest-fiasco:9000</sonar.host.url>                
+        <cmake.generator.win32>Visual Studio 14 2015</cmake.generator.win32>
+        <cmake.generator.win64>Visual Studio 14 2015 Win64</cmake.generator.win64>
+        <cmake.generator.mingw>MinGW Makefiles</cmake.generator.mingw>
+        <cmake.generator.unix>Unix Makefiles</cmake.generator.unix>                
+        <hostname>${env.HOSTNAME}</hostname>
+        <osname>${env.VARNAME}</osname>
+        <nproc>${env.NUMBER_OF_PROCESSORS}</nproc>
+        <os>${env.OS}</os>
+        <computer>${env.COMPUTERNAME}</computer>
+        <arch>${env.PROCESSOR_ARCHITECTURE}</arch>
+        <aol>${env.PROCESSOR_ARCHITECTURE}.${env.OS}.gcc</aol>
+    </properties>
         <profiles> 
         <profile>
             <id>mingw</id>
@@ -148,44 +151,67 @@
             </properties>
             <build>
                 <plugins>
+                      <plugin>
+                         <groupId>org.apache.maven.plugins</groupId>
+                         <artifactId>maven-compiler-plugin</artifactId>
+                         <version>${maven-compiler-plugin.version}</version>
+                         <executions>
+                             <execution>
+                                  <id>default-compile</id>
+                                  <phase>none</phase>
+                             </execution>
+                         </executions>
+                      </plugin>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
+                        <version>${exec-maven-plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>generate</id>
+                                <id>generate-build-configuration</id>
                                 <goals>
                                     <goal>exec</goal>
                                 </goals>
                                 <phase>generate-sources</phase>
                                 <configuration>
                                     <executable>${cmake.command}</executable>
-                                    <workingDirectory>${project.build.directory}/mingw</workingDirectory>
+                                    <workingDirectory>${project.build.directory}/${aol}</workingDirectory>
                                     <arguments>
-                                        <argument>-G</argument>
-                                        <argument>${cmake.generator.mingw}</argument>
-                                        <argument>${project.basedir}/src/main/native</argument>
+                                        <argument>-Wno-error=dev</argument>
+                                        <argument>-DPROJECT_NAME=Sphynx</argument>
+                                        <argument>-DCMAKE_C_COMPILER=/usr/bin/gcc</argument>
+                                        <argument>-DCMAKE_CXX_COMPILER=/usr/bin/g++</argument>
+                                        <argument>-DCMAKE_BUILD_TYPE=Debug</argument>
+										<argument>-DCMAKE_EXPORT_COMPILE_COMMANDS=ON</argument>
+										<argument>-DENABLE_CPPLINT=ON</argument>
+										<argument>-DENABLE_FORMATING_STYLE=ON</argument>  
+										<argument>-DENABLE_CPPCHECK=ON</argument> 
+										<argument>-DENABLE_CYCLOMATIC_COMPLEXITY=ON</argument> 
+                                        <argument>-DCMAKE_BUILD_TYPE=Debug</argument>
                                         <argument>-DCMAKE_BUILD_TYPE=Release</argument>
+                                        <argument>-G</argument>
+                                        <argument>${cmake.generator.unix}</argument>
+                                        <argument>${project.basedir}</argument>
                                     </arguments>
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>compile</id>
+                                <id>generate-build-configuration</id>
                                 <goals>
                                     <goal>exec</goal>
                                 </goals>
-                                <phase>generate-resources</phase>
+                                <phase>source-compile</phase>
                                 <configuration>
                                     <executable>${cmake.command}</executable>
-                                    <workingDirectory>${project.build.directory}/mingw</workingDirectory>
+                                    <workingDirectory>${project.basedir}</workingDirectory>
                                     <arguments>
                                         <argument>--build</argument>
-                                        <argument>.</argument>
+                                        <argument>${project.build.directory}/${aol}</argument>
                                         <argument>--target</argument>
                                         <argument>all</argument>
                                         <argument>--</argument>
                                         <argument>-j</argument>
-                                        <argument>8</argument>
+                                        <argument>${env.NUMBER_OF_PROCESSORS}</argument>
                                     </arguments>
                                 </configuration>
                             </execution>
@@ -297,7 +323,7 @@
                         </goals>
                     </execution>
                 </executions>
-    </plugin>
-       </plugins>
+			</plugin>
+		</plugins>
     </build>    
 </project>        
