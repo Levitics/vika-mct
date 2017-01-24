@@ -6,7 +6,7 @@ MockTimer::MockTimer()
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
-MockTimer::MockTimer(const MockTimer& orig) {
+MockTimer::MockTimer(const MockTimer & orig) {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 

@@ -10,7 +10,7 @@ class MockTimer : public Timer
 public:
 
     MockTimer();
-    MockTimer(const MockTimer& orig);
+    MockTimer(const MockTimer & orig);
     virtual ~MockTimer();
     MOCK_METHOD1(Start , void (int));
     MOCK_METHOD0(Stop , void());

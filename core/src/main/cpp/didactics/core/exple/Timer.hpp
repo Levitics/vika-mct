@@ -7,7 +7,7 @@ class Timer
 public:
 
     Timer();
-    Timer(const Timer& orig);
+    Timer(const Timer & orig);
     virtual ~Timer();
     virtual void Start (int) = 0;
     virtual void Stop () = 0;

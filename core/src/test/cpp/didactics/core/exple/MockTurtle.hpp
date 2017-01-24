@@ -14,7 +14,7 @@ class MockTurtle : public ::testing::NiceMock<Turtle>
 public:
 
     MockTurtle();
-    MockTurtle(const MockTurtle& orig);
+    MockTurtle(const MockTurtle & orig);
     virtual ~MockTurtle();
 
     MOCK_METHOD0(PenUp , void());

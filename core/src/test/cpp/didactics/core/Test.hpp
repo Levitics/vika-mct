@@ -16,7 +16,7 @@ namespace didactics
              * @brief Execute tests.
              * @return The total number of test failures and errors.
              */
-            extern int execute (int argc , char *argv[]);
+            extern int execute (int argc , char * argv[]);
             /*!
              * @brief Namespace logger.
              */

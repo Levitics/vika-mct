@@ -33,7 +33,7 @@ public:
     MOCK_METHOD0(getArbitraryString , std::string());
     MOCK_METHOD0(IsActive , bool());
     DelegateMockTurtle();
-    DelegateMockTurtle(const DelegateMockTurtle& orig);
+    DelegateMockTurtle(const DelegateMockTurtle & orig);
     virtual ~DelegateMockTurtle();
     void DelegateToFake ();
 

@@ -93,6 +93,11 @@ function(add_coverage_targets TEST_TARGET MODULE_NAME MODULE_DIRECTORY)
     set(COVERAGE_REPORT_DIR "${COVERAGE_WORKING_DIR}/coveragereport")
     file(MAKE_DIRECTORY ${COVERAGE_WORKING_DIR})
 
+    add_test(NAME ${TEST_TARGET}
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+            COMMAND ${CMAKE_BINARY_DIR}/bin/${TEST_TARGET}
+    )
+
     if(NOT TARGET coverage)
         add_custom_target(coverage
             COMMENT "Running ${MODULE_NAME} coverage report."
@@ -100,22 +105,29 @@ function(add_coverage_targets TEST_TARGET MODULE_NAME MODULE_DIRECTORY)
     endif()
 
     add_custom_command(TARGET coverage
+        COMMENT "Cleaning gcda files ${MODULE_DIRECTORY}"
         COMMAND lcov --directory ${MODULE_DIRECTORY} --zerocounters
         WORKING_DIRECTORY ${COVERAGE_WORKING_DIR}
     )
 
     add_custom_command(TARGET coverage
-        COMMAND make test
+        COMMENT "Running ${TEST_TARGET}"
+#        COMMAND make test
+        COMMAND ${CMAKE_BINARY_DIR}/bin/${TEST_TARGET}
         WORKING_DIRECTORY ${COVERAGE_WORKING_DIR}
     )
 
     add_custom_command(TARGET coverage
+        COMMENT "Capturing date in ${MODULE_DIRECTORY}"
         COMMAND lcov --directory ${MODULE_DIRECTORY} --capture --output-file ${COVERAGE_WORKING_DIR}/${MODULE_NAME}.info
+        COMMAND lcov --remove ${COVERAGE_WORKING_DIR}/${MODULE_NAME}.info 'build/*' '/usr/*' --output-file ${COVERAGE_WORKING_DIR}/${MODULE_NAME}.cleaned.info
         WORKING_DIRECTORY ${COVERAGE_WORKING_DIR}
     )
 
     add_custom_command(TARGET coverage
-        COMMAND genhtml -o ${COVERAGE_WORKING_DIR} ${COVERAGE_WORKING_DIR}/${MODULE_NAME}.info
+        COMMENT "Generating html report ${COVERAGE_WORKING_DIR}"
+#        COMMAND genhtml -o ${COVERAGE_WORKING_DIR} ${COVERAGE_WORKING_DIR}/${MODULE_NAME}.info
+        COMMAND genhtml --frames --show-details --title ${MODULE_NAME} ${COVERAGE_LIMITS}  -s --legend --highlight --demangle-cpp -o ${COVERAGE_WORKING_DIR} ${COVERAGE_WORKING_DIR}/${MODULE_NAME}.cleaned.info
         WORKING_DIRECTORY ${COVERAGE_WORKING_DIR}
     )
 

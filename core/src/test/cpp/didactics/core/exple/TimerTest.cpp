@@ -1,6 +1,5 @@
 
 #include <didactics/core/exple/TimerTest.hpp>
-#include <didactics/Test.hpp>
 
 using ::testing::_;
 using ::testing::AtLeast;
@@ -15,17 +14,15 @@ using ::testing::ReturnRef;
 using ::testing::SaveArg;
 using ::testing::InSequence;
 
-
-CPPUNIT_TEST_SUITE_NAMED_REGISTRATION(TimerTest , didactics::core::test::runThisTestSuiteName());
+MockTimer * TimerTest::objectUnderTest = nullptr;
+log4cxx::LoggerPtr TimerTest::logger = log4cxx::Logger::getLogger(std::string("didactics.core.utils.TimerTest"));
 
 TimerTest::TimerTest()
-    : objectUnderTest()
-    , logger(log4cxx::Logger::getLogger(std::string("diactics.core.exple.TimerTest")))
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
-TimerTest::TimerTest(const TimerTest& orig) {
+TimerTest::TimerTest(const TimerTest & orig) {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
@@ -33,74 +30,92 @@ TimerTest::~TimerTest() {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
-void TimerTest::setUp ()
+void TimerTest::SetUp ()
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
-    this->objectUnderTest = new MockTimer();
+    //    const ::testing::TestInfo* const test_info =
+    //            ::testing::UnitTest::GetInstance()->current_test_info();
+    //    LOG4CXX_INFO(logger , "happyman@ubuntu" << test_info->name() <<"--"<< test_info->test_case_name());
+    objectUnderTest = new MockTimer();
 }
 
-void TimerTest::tearDown ()
+void TimerTest::TearDown ()
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
-    delete this->objectUnderTest;
+    delete objectUnderTest;
 }
 
-void TimerTest::testIsActive ()
+TEST_F(TimerTest , testStart)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
+    EXPECT_CALL(*objectUnderTest , IsActive())
+    .WillOnce(Return(true))
+    .WillRepeatedly (Return (false));
+    EXPECT_TRUE(objectUnderTest->IsActive());
+    EXPECT_FALSE(objectUnderTest->IsActive());
+}
 
+TEST_F(TimerTest , testAll)
+{
+    LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
+}
+TEST_F(TimerTest , testStop)
+{
+    LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
+}
+TEST_F(TimerTest , testIsActive)
+{
+    LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
     EXPECT_CALL(*objectUnderTest , IsActive()).Times(AnyNumber());
+    EXPECT_FALSE(objectUnderTest->IsActive());
 
-    CPPUNIT_ASSERT_EQUAL_MESSAGE("Unexpected timer status !"
-                                , false
-                                , objectUnderTest->IsActive());
+}
+TEST_F(TimerTest , testGetId)
+{
+    LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
-void TimerTest::testName ()
+TEST_F(TimerTest , testName)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 
     EXPECT_CALL(*objectUnderTest , GetId()).WillRepeatedly(Return(std::string("someDefaultValue")));
-
-    CPPUNIT_ASSERT_EQUAL_MESSAGE(
-        "Value mismatch !" ,
-        std::string("someDefaultValue") , objectUnderTest->GetId());
+    EXPECT_EQ(std::string("someDefaultValue") , objectUnderTest->GetId());
 }
-/*
-   void TimerTest::testIsActive2()
-   {
-    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
-    MockTimer timer;
-    EXPECT_CALL(timer, IsActive()).Times(AnyNumber());
-   }
- */
 
-void TimerTest::testName1 ()
+
+TEST_F(TimerTest , testIsActive2)
+{
+    LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
+    //    MockTimer timer;
+    //    EXPECT_CALL(timer, IsActive()).Times(AnyNumber());
+}
+
+
+TEST_F(TimerTest , testName1 )
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
     ::testing::DefaultValue<std::string>::Set(std::string("Some Default Value"));
 
     EXPECT_CALL(*objectUnderTest , GetId()).Times(AnyNumber());
-    CPPUNIT_ASSERT_EQUAL_MESSAGE(
-        "Value mismatch !" ,
-        std::string("Some Default Value") , objectUnderTest->GetId());
+    EXPECT_EQ(std::string("Some Default Value") , objectUnderTest->GetId());
 }
 
-void TimerTest::testDynamicReturnValues ()
+TEST_F(TimerTest , testDynamicReturnValues)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 
     EXPECT_CALL(*objectUnderTest ,
                 IsActive()).WillOnce(Return(false)).WillOnce(Return(true)).WillRepeatedly(Return(false));
 
-    CPPUNIT_ASSERT_EQUAL(false , objectUnderTest->IsActive());
-    CPPUNIT_ASSERT_EQUAL(true , objectUnderTest->IsActive());
-    CPPUNIT_ASSERT_EQUAL(false , objectUnderTest->IsActive());
-    CPPUNIT_ASSERT_EQUAL(false , objectUnderTest->IsActive());
-    CPPUNIT_ASSERT_EQUAL(false , objectUnderTest->IsActive());
+    EXPECT_FALSE(objectUnderTest->IsActive());
+    EXPECT_TRUE(objectUnderTest->IsActive());
+    EXPECT_FALSE(objectUnderTest->IsActive());
+    EXPECT_FALSE(objectUnderTest->IsActive());
+    EXPECT_FALSE(objectUnderTest->IsActive());
 }
 
-void TimerTest::testDynamicReturnValues1 ()
+TEST_F(TimerTest , testDynamicReturnValues1 )
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
     InSequence s;
@@ -110,39 +125,37 @@ void TimerTest::testDynamicReturnValues1 ()
     EXPECT_CALL(*objectUnderTest , Stop());
     EXPECT_CALL(*objectUnderTest , IsActive()).WillRepeatedly(Return(false));
 
-    // *
-    CPPUNIT_ASSERT_EQUAL(false , objectUnderTest->IsActive());
+    EXPECT_FALSE(objectUnderTest->IsActive());
     objectUnderTest->Start(1000);
-    CPPUNIT_ASSERT_EQUAL(true , objectUnderTest->IsActive());
+    EXPECT_TRUE(objectUnderTest->IsActive());
     objectUnderTest->Stop();
-    CPPUNIT_ASSERT_EQUAL(false , objectUnderTest->IsActive());
+    EXPECT_FALSE(objectUnderTest->IsActive());
 
-    // */
 
-    /*
-        LOG4CXX_TRACE(logger, timer.IsActive());
-        timer.Start(1000);
-        LOG4CXX_TRACE(logger, timer.IsActive());
-        timer.Stop();
-        LOG4CXX_TRACE(logger, timer.IsActive());
-       //*/
-
+    //    LOG4CXX_TRACE(logger, objectUnderTest->IsActive());
+    //        objectUnderTest->Start(1000);
+    //    LOG4CXX_TRACE(logger, objectUnderTest->IsActive());
+    //        objectUnderTest->Stop();
+    //    LOG4CXX_TRACE(logger, objectUnderTest->IsActive());
 }
 
-void TimerTest::testIsActiveValueUsingVariable ()
+TEST_F(TimerTest , testIsActiveValueUsingVariable)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 
     bool timerActive = false;
 
-    EXPECT_CALL(*objectUnderTest , IsActive()).WillRepeatedly(::testing::ReturnPointee(&timerActive));
-    EXPECT_CALL(*objectUnderTest , Start(_)).WillRepeatedly(::testing::Assign(&timerActive , true));
-    EXPECT_CALL(*objectUnderTest , Stop()).WillRepeatedly(::testing::Assign(&timerActive , false));
+    EXPECT_CALL(*objectUnderTest , IsActive())
+    .WillRepeatedly(::testing::ReturnPointee(&timerActive));
+    EXPECT_CALL(*objectUnderTest , Start(_))
+    .WillRepeatedly(::testing::Assign(&timerActive , true));
+    EXPECT_CALL(*objectUnderTest , Stop())
+    .WillRepeatedly(::testing::Assign(&timerActive , false));
 
-    CPPUNIT_ASSERT_EQUAL(false , objectUnderTest->IsActive());
+    EXPECT_FALSE(objectUnderTest->IsActive());
     objectUnderTest->Start(1000);
-    CPPUNIT_ASSERT_EQUAL(true , objectUnderTest->IsActive());
+    EXPECT_TRUE(objectUnderTest->IsActive());
     objectUnderTest->Stop();
-    CPPUNIT_ASSERT_EQUAL(false , objectUnderTest->IsActive());
-    CPPUNIT_ASSERT_EQUAL(false , objectUnderTest->IsActive());
+    EXPECT_FALSE(objectUnderTest->IsActive());
+    EXPECT_FALSE(objectUnderTest->IsActive());
 }

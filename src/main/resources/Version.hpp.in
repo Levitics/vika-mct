@@ -1,7 +1,8 @@
-#ifndef @NAME@_VERSION_H
-#define @NAME@_VERSION_H
+#ifndef @UPPER_PROJECT_NAME@_CORE_VERSION_HPP
+#define @UPPER_PROJECT_NAME@_CORE_VERSION_HPP
 
-#include <@INCLUDE_NAME@/Api.hpp>
+//#include <@UPPER_PROJECT_NAME@/Api.hpp>
+#include <didactics/core/Api.hpp>
 #include <string>
 
 /*!
@@ -19,19 +20,42 @@ enum ReleaseLevel
     RELEASE_LEVEL_FINAL        = 0xF0,    /**< API is in final state, i.e. officially approved. */
 };
 
+#define VERSION_REVISION 0x@GIT_REVISION@
 #define RELEASE_LEVEL	ReleaseLevel::RELEASE_LEVEL_FINAL
 #define RELEASE_SERIAL	0
+
         
 /*!
  * @brief Version as a single 4-byte hex number, e.g. 0x010502B2 == 1.5.2b2.
  *        Use this for numeric comparisons, e.g. #if PY_VERSION_HEX >= ... 
  */
-#define VERSION_HEX (
-                        (@PROJECT_VERSION_MAJOR@ << 24)    | \
-                	(@PROJECT_VERSION_MINOR@ << 16) | \
-			(@PROJECT_VERSION_MICRO@ <<  8) | \
-			(RELEASE_LEVEL <<  4) | \
-			(RELEASE_SERIAL << 0))
+#define VERSION_HEX (                                           \
+                        (@PROJECT_VERSION_MAJOR@ << 24)     |   \
+                	(@PROJECT_VERSION_MINOR@ << 16)     |   \
+			(@PROJECT_VERSION_MICRO@ <<  8)     |   \
+			(RELEASE_LEVEL <<  4)               |   \
+			(RELEASE_SERIAL << 0)                   \
+                    )
+
+#define EQ_VERSION_GT( MAJOR, MINOR, PATCH )                         \
+     ( (@PROJECT_VERSION_MAJOR@>MAJOR) ||                                       \
+       (@PROJECT_VERSION_MAJOR@==MAJOR && (@PROJECT_VERSION_MINOR@>MINOR ||            \
+                           (@PROJECT_VERSION_MINOR@==MINOR && @PROJECT_VERSION_MICRO@>PATCH))))
+ 
+#define EQ_VERSION_GE( MAJOR, MINOR, PATCH )                         \
+     ( (@PROJECT_VERSION_MAJOR@>MAJOR) ||                                       \
+       (@PROJECT_VERSION_MAJOR@==MAJOR && (@PROJECT_VERSION_MINOR@>MINOR ||            \
+                          (@PROJECT_VERSION_MINOR@==MINOR && @PROJECT_VERSION_MICRO@>=PATCH))))
+ 
+#define EQ_VERSION_LT( MAJOR, MINOR, PATCH )                         \
+     ( (@PROJECT_VERSION_MAJOR@<MAJOR) ||                                       \
+       (@PROJECT_VERSION_MAJOR@==MAJOR && (@PROJECT_VERSION_MINOR@<MINOR ||            \
+                           (@PROJECT_VERSION_MINOR@==MINOR && @PROJECT_VERSION_MICRO@<PATCH))))
+ 
+#define EQ_VERSION_LE( MAJOR, MINOR, PATCH )                         \
+     ( (@PROJECT_VERSION_MAJOR@<MAJOR) ||                                       \
+       (@PROJECT_VERSION_MAJOR@==MAJOR && (@PROJECT_VERSION_MINOR@<MINOR ||            \
+                          (@PROJECT_VERSION_MINOR@==MINOR && @PROJECT_VERSION_MICRO@=PATCH))))
 
     /*! 
      * @brief The current major version. 
@@ -61,7 +85,7 @@ enum ReleaseLevel
     /*!
      * @brief  The current binary interface. 
      */
-#   define @NAMESPACE@_VERSION_ABI @PROJECT_VERSION_ABI@ull
+#   define @NAMESPACE@_VERSION_ABI @PROJECT_VERSION_ABI@
 
 /*!
  * @brief  True if the current version is newer than the given one. 
@@ -135,7 +159,7 @@ public:
     /*! 
      * @return the current @Name@ version plus the git SHA hash (MM.mm.pp.rev). 
      */
-    static std::string getRevString() 
+    static std::string getRevString(); 
     /*!
      * @brief Runtime check for ABI compatibility.
      *          Call from code using @Name@. Will fail if the executable

@@ -13,7 +13,7 @@ FakeTurtle::FakeTurtle()
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
-FakeTurtle::FakeTurtle(const FakeTurtle& orig) {
+FakeTurtle::FakeTurtle(const FakeTurtle & orig) {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 

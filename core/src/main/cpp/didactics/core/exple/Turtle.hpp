@@ -1,17 +1,17 @@
 
 #ifndef TURTLE_HPP
 #define TURTLE_HPP
- #include <didactics/core/log/Logger.hpp>
+#include <didactics/core/log/Logger.hpp>
 
 class Turtle
 {
 public:
 
     Turtle();
-    Turtle(const Turtle& orig);
+    Turtle(const Turtle & orig);
     Turtle(Turtle &&) = delete;
-    Turtle& operator = (Turtle const&) = delete;
-    Turtle& operator = (Turtle &&) = delete;
+    Turtle & operator = (Turtle const &) = delete;
+    Turtle & operator = (Turtle &&) = delete;
     virtual ~Turtle();
 
     virtual void PenUp () = 0;

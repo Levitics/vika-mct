@@ -18,6 +18,15 @@ list(APPEND CMAKE_MODULE_PATH
     "${CMAKE_SOURCE_DIR}/src/test/resources/moduleTest"
 )
 
+set(${PROJECT_NAME}_MAJOR_VERSION 1)
+set(${PROJECT_NAME}_MINOR_VERSION 0)
+set(${PROJECT_NAME}_PATCH_VERSION 1)
+set(PROJECT_VERSION_MAJOR ${${PROJECT_NAME}_MAJOR_VERSION})
+set(PROJECT_VERSION_MINOR ${${PROJECT_NAME}_MINOR_VERSION})
+set(PROJECT_VERSION_MICRO ${${PROJECT_NAME}_PATCH_VERSION})
+set(${PROJECT_NAME}_VERSION ${${PROJECT_NAME}_MAJOR_VERSION}.${${PROJECT_NAME}_MINOR_VERSION}.${${PROJECT_NAME}_PATCH_VERSION})
+
+
 set(TARGET_BUILD_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_INSTALL_PREFIX ${TARGET_BUILD_DIRECTORY})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -99,6 +108,51 @@ if(NOT Ncpu EQUAL 0)
     #message(STATUS "CMAKE_MAKE_PROGRAM Building with Processor Count: ${CMAKE_MAKE_PROGRAM} -j${Ncpu}")
 endif()
 
+string(TOUPPER ${PROJECT_NAME} UPPER_PROJECT_NAME)
+string(TOLOWER ${PROJECT_NAME} LOWER_PROJECT_NAME)
+string(TOUPPER didactics UPPER_ROOT_INC_NAME)
+string(TOLOWER didactics LOWER_ROOT_INC_NAME)
+
+string(SUBSTRING ${PROJECT_NAME} 0 3 NS)
+string(TOLOWER ${NS} UPPER_NS)
+
+
+if(NOT PROJECT_NS)
+    string(TOUPPER ${PROJECT_NAME} UPPER_PNAME)
+    string(SUBSTRING ${UPPER_PNAME} 0 3 P_NS)
+    set(PROJECT_NS ${P_NS})
+endif()
+
+set(NAMESPACE ${PROJECT_NS}) #${UPPER_NS} ) #${${UPPER_NS}_NAMESPACE})
+
+set(ROOT_INCLUDE_NAME didactics)
+configure_file( "${PROJECT_SOURCE_DIR}/src/main/resources/Defines.hpp.in"
+                "${PROJECT_SOURCE_DIR}/core/src/main/cpp/didactics/core/Defines.hpp"
+    @ONLY
+)
+
+set(PROJECT_VERSION_ABI ${${PROJECT_NAME}_VERSION_ABI})
+
+configure_file(
+    "${PROJECT_SOURCE_DIR}/src/main/resources/Api.hpp.in"
+    "${PROJECT_SOURCE_DIR}/core/src/main/cpp/didactics/core/Api.hpp" 
+    @ONLY
+)
+
+configure_file(
+    ${PROJECT_SOURCE_DIR}/src/main/resources/Version.hpp.in
+    ${PROJECT_SOURCE_DIR}/core/src/main/cpp/didactics/core/Version.hpp 
+    @ONLY
+)
+
+
+configure_file(
+    ${CMAKE_SOURCE_DIR}/src/main/resources/Version.cpp.in
+    ${CMAKE_SOURCE_DIR}/core/src/main/cpp/didactics/core/Version.cpp 
+    @ONLY
+)
+
+
 add_subdirectory (external)
 
 find_package(CPPUNIT)
@@ -171,6 +225,8 @@ include(CommonCoverage)
 #    )
 #endif(ENABLE_QA_CHECK)
 
+include(CTest)
+enable_testing ()
 add_subdirectory (core)
 #add_subdirectory (utils)
 #add_subdirectory (src/main/cpp)

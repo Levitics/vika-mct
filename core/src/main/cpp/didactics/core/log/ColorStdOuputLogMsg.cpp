@@ -34,7 +34,7 @@ ColorStdOuputLogMsg::ColorStdOuputLogMsg(bool useColor ,
 
 }
 
-ColorStdOuputLogMsg::ColorStdOuputLogMsg(const ColorStdOuputLogMsg& orig)
+ColorStdOuputLogMsg::ColorStdOuputLogMsg(const ColorStdOuputLogMsg & orig)
     : ColorStdOuputLogMsg(true)
 {
 }
@@ -42,7 +42,6 @@ ColorStdOuputLogMsg::ColorStdOuputLogMsg(const ColorStdOuputLogMsg& orig)
 ColorStdOuputLogMsg::~ColorStdOuputLogMsg()
 {
 }
-
 
 void ColorStdOuputLogMsg::setColor (bool value)
 {
@@ -54,9 +53,9 @@ void ColorStdOuputLogMsg::setPrintLocation (bool value)
     printLocation = value;
 }
 
-void ColorStdOuputLogMsg::format (log4cxx::LogString&                  _output ,
-                                  log4cxx::spi::LoggingEventPtr const& event ,
-                                  log4cxx::helpers::Pool&              p) const
+void ColorStdOuputLogMsg::format (log4cxx::LogString &                  _output ,
+                                  log4cxx::spi::LoggingEventPtr const & event ,
+                                  log4cxx::helpers::Pool &              p) const
 {
     std::ostringstream output;
     const int level = event->getLevel()->toInt();
@@ -133,8 +132,8 @@ void ColorStdOuputLogMsg::format (log4cxx::LogString&                  _output ,
     }
 }
 
-void ColorStdOuputLogMsg::setOption (const log4cxx::LogString& option ,
-                                     const log4cxx::LogString& value)
+void ColorStdOuputLogMsg::setOption (const log4cxx::LogString & option ,
+                                     const log4cxx::LogString & value)
 {
     log4cxx::helpers::DateLayout::setOption(option , value);
     /*
@@ -158,235 +157,233 @@ void ColorStdOuputLogMsg::setOption (const log4cxx::LogString& option ,
 
 }
 
-
-std::ostream&ColorStdOuputLogMsg::reset (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::reset (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-#if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[00m";
-#elif defined (OS_WINDOWS)
-        ColoredTerminal::winChangeAttributes(stream , -1 , -1);
-#endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[00m";
+ #elif defined (OS_WINDOWS)
+            ColoredTerminal::winChangeAttributes(stream , -1 , -1);
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::bold (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::bold (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-#if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[1m";
-#elif defined (OS_WINDOWS)
-#endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[1m";
+ #elif defined (OS_WINDOWS)
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::dark (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::dark (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-#if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[2m";
-#elif defined (OS_WINDOWS)
-#endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[2m";
+ #elif defined (OS_WINDOWS)
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::underline (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::underline (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-#if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[4m";
-#elif defined (OS_WINDOWS)
-#endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[4m";
+ #elif defined (OS_WINDOWS)
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::blink (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::blink (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-#if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[5m";
-#elif defined (OS_WINDOWS)
-#endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[5m";
+ #elif defined (OS_WINDOWS)
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::reverse (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::reverse (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-        #if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[7m";
-        #elif defined (OS_WINDOWS)
-        #endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[7m";
+ #elif defined (OS_WINDOWS)
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::concealed (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::concealed (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-        #if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[8m";
-        #elif defined (OS_WINDOWS)
-        #endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[8m";
+ #elif defined (OS_WINDOWS)
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::grey (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::grey (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-        #if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[30m";
-        #elif defined (OS_WINDOWS)
-        __internal::winChangeAttributes(stream ,
-                                        0         // grey (black)
-                                        );
-        #endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[30m";
+ #elif defined (OS_WINDOWS)
+            __internal::winChangeAttributes(stream ,
+                                            0     // grey (black)
+                                            );
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::red (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::red (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-        #if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[31m";
-        #elif defined (OS_WINDOWS)
-        __internal::winChangeAttributes(stream ,
-                                        FOREGROUND_RED
-                                        );
-        #endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[31m";
+ #elif defined (OS_WINDOWS)
+            __internal::winChangeAttributes(stream ,
+                                            FOREGROUND_RED
+                                            );
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::green (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::green (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-        #if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[32m";
-        #elif defined (OS_WINDOWS)
-        __internal::winChangeAttributes(stream ,
-                                        FOREGROUND_GREEN
-                                        );
-        #endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[32m";
+ #elif defined (OS_WINDOWS)
+            __internal::winChangeAttributes(stream ,
+                                            FOREGROUND_GREEN
+                                            );
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::onGrey (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::onGrey (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-        #if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[40m";
-        #elif defined (OS_WINDOWS)
-        __internal::winChangeAttributes(stream , -1 ,
-                                        0         // grey (black)
-                                        );
-        #endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[40m";
+ #elif defined (OS_WINDOWS)
+            __internal::winChangeAttributes(stream , -1 ,
+                                            0     // grey (black)
+                                            );
+ #endif
     }
 
     return stream;
 }
 
-
-std::ostream&ColorStdOuputLogMsg::onYellow (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::onYellow (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-        #if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[43m";
-        #elif defined (OS_WINDOWS)
-        __internal::winChangeAttributes(stream , -1 ,
-                                        BACKGROUND_GREEN | BACKGROUND_RED
-                                        );
-        #endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[43m";
+ #elif defined (OS_WINDOWS)
+            __internal::winChangeAttributes(stream , -1 ,
+                                            BACKGROUND_GREEN | BACKGROUND_RED
+                                            );
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::onRed (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::onRed (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-        #if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[41m";
-        #elif defined (OS_WINDOWS)
-        __internal::winChangeAttributes(stream , -1 ,
-                                        BACKGROUND_RED
-                                        );
-        #endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[41m";
+ #elif defined (OS_WINDOWS)
+            __internal::winChangeAttributes(stream , -1 ,
+                                            BACKGROUND_RED
+                                            );
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::onGreen (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::onGreen (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-        #if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[42m";
-        #elif defined (OS_WINDOWS)
-        __internal::winChangeAttributes(stream , -1 ,
-                                        BACKGROUND_GREEN
-                                        );
-        #endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[42m";
+ #elif defined (OS_WINDOWS)
+            __internal::winChangeAttributes(stream , -1 ,
+                                            BACKGROUND_GREEN
+                                            );
+ #endif
     }
 
     return stream;
@@ -428,74 +425,73 @@ std::ostream&ColorStdOuputLogMsg::onGreen (std::ostream& stream)
 
  */
 
-std::ostream&ColorStdOuputLogMsg::onBlue (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::onBlue (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-        #if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[44m";
-        #elif defined (OS_WINDOWS)
-        __internal::winChangeAttributes(stream , -1 ,
-                                        BACKGROUND_BLUE
-                                        );
-        #endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[44m";
+ #elif defined (OS_WINDOWS)
+            __internal::winChangeAttributes(stream , -1 ,
+                                            BACKGROUND_BLUE
+                                            );
+ #endif
     }
 
     return stream;
 }
 
-
-std::ostream&ColorStdOuputLogMsg::onMagenta (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::onMagenta (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-        #if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[45m";
-        #elif defined (OS_WINDOWS)
-        __internal::winChangeAttributes(stream , -1 ,
-                                        BACKGROUND_BLUE | BACKGROUND_RED
-                                        );
-        #endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[45m";
+ #elif defined (OS_WINDOWS)
+            __internal::winChangeAttributes(stream , -1 ,
+                                            BACKGROUND_BLUE | BACKGROUND_RED
+                                            );
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::onCyan (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::onCyan (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-#if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[46m";
-#elif defined (OS_WINDOWS)
-        __internal::winChangeAttributes(stream , -1 ,
-                                        BACKGROUND_GREEN | BACKGROUND_BLUE
-                                        );
-#endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[46m";
+ #elif defined (OS_WINDOWS)
+            __internal::winChangeAttributes(stream , -1 ,
+                                            BACKGROUND_GREEN | BACKGROUND_BLUE
+                                            );
+ #endif
     }
 
     return stream;
 }
 
-std::ostream&ColorStdOuputLogMsg::onWhite (std::ostream& stream)
+std::ostream &ColorStdOuputLogMsg::onWhite (std::ostream & stream)
 {
     ColorStdOuputLogMsg::Term internalStream;
 
     if (internalStream.isAttyTerminal(stream))
     {
-#if defined (OS_MACOS) || defined (OS_LINUX)
-        stream << "\033[47m";
-#elif defined (OS_WINDOWS)
-        __internal::winChangeAttributes(stream , -1 ,
-                                        BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_RED
-                                        );
-#endif
+ #if defined (OS_MACOS) || defined (OS_LINUX)
+            stream << "\033[47m";
+ #elif defined (OS_WINDOWS)
+            __internal::winChangeAttributes(stream , -1 ,
+                                            BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_RED
+                                            );
+ #endif
     }
 
     return stream;

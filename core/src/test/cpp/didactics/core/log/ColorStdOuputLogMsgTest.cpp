@@ -1,11 +1,11 @@
 
 #include <didactics/core/log/ColorStdOuputLogMsgTest.hpp>
-CPPUNIT_TEST_SUITE_NAMED_REGISTRATION(ColorStdOuputLogMsgTest , test::coreSuite());
+
 ColorStdOuputLogMsgTest::ColorStdOuputLogMsgTest()
 {
 }
 
-ColorStdOuputLogMsgTest::ColorStdOuputLogMsgTest(const ColorStdOuputLogMsgTest& orig)
+ColorStdOuputLogMsgTest::ColorStdOuputLogMsgTest(const ColorStdOuputLogMsgTest & orig)
 {
 }
 
@@ -13,17 +13,17 @@ ColorStdOuputLogMsgTest::~ColorStdOuputLogMsgTest()
 {
 }
 
-void ColorStdOuputLogMsgTest::setUp ()
+void ColorStdOuputLogMsgTest::SetUp ()
 {
 
 }
 
-void ColorStdOuputLogMsgTest::tearDown ()
+void ColorStdOuputLogMsgTest::TearDown ()
 {
 
 }
 
-void ColorStdOuputLogMsgTest::dummy ()
+TEST_F(ColorStdOuputLogMsgTest , dummy)
 {
-    CPPUNIT_ASSERT(true);
+
 }

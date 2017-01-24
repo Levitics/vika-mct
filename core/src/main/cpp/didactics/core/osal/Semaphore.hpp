@@ -1,12 +1,15 @@
 
 // #http://jean-luc.massat.perso.luminy.univ-amu.fr/ens/docs/thread-sem.html
-#ifndef SEMAPHORE_HPP
-#define SEMAPHORE_HPP
+#ifndef DIDACTICS_CORE_OSAL_SEMAPHORE_HPP
+#define DIDACTICS_CORE_OSAL_SEMAPHORE_HPP
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
 #include <semaphore.h>
 #include <unistd.h>
+#include <string>
+#include <didactics/core/errorhandling/ErrnoMapper.hpp>
+#include <didactics/core/Defines.hpp>
 
 class Semaphore
 {
@@ -15,7 +18,6 @@ public:
     /*!
      * @brief Automatically take/give semaphore.
      */
-
     class Auto
     {
 public:
@@ -41,64 +43,65 @@ private:
     };
 
     Semaphore();
-    Semaphore(const Semaphore& orig);
+    Semaphore(const Semaphore & orig);
     virtual ~Semaphore();
 
     /*!
      *  @brief Initialize semaphore object SEM to VALUE.  If PSHARED then share it
      *          with other processes.
      */
-    int init (sem_t * sem , int pshared , unsigned int value);
+    bool init (int pshared = 0 , unsigned int value = 1);
     /*!
      *  @brief Free resources associated with semaphore object SEM.
      */
-    int destroy (sem_t * sem);
+    bool destroy ();
 
     /*!
      *  @brief Open a named semaphore NAME with open flags OFLAG.
      */
-    sem_t * open (const char * name , int oflag);
+    sem_t * open (std::string & name , int oflag);
 
     /*!
      *  @brief Close descriptor for named semaphore SEM.
      */
-    int close (sem_t *__sem);
+    bool close ();
 
     /*!
      *  @brief Remove named semaphore NAME.
      */
-    int unlink (const char *name);
+    bool unlink (std::string &name);
 
     /*!
      *  @brief Wait for SEM being posted.
      *          This function is a cancellation point and therefore not marked with
      */
-    int wait (sem_t *sem);
-
-
+    bool wait (sem_t * sem);
     /*!
      *  @brief Similar to `sem_wait' but wait only until ABSTIME.
      *          This function is a cancellation point and therefore not marked with __THROW.
      */
-    int timedwait (sem_t * sem , const struct timespec *abstime);
+    bool timedwait (sem_t * sem , const struct timespec * abstime);
 
     /*!
      *  @brief Test whether SEM is posted.
      */
-    int trywait (sem_t *sem);
+    bool trywait (sem_t * sem);
 
     /*!
      *  @brief Post SEM.
      */
-    int post (sem_t * sem);
+    bool post (sem_t * sem);
 
     /*!
      * @brief Get current value of SEM and store it in *SVAL.
      */
-    int getvalue (sem_t *sem , int *sval);
+    bool getvalue (sem_t * sem , int * sval);
+    int take (int timeout = WAIT_FOREVER) const;
+    int give () const;
 
 private:
 
+    sem_t mtx;
 };
 
 #endif /* SEMAPHORE_HPP */

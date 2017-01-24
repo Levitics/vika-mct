@@ -1,14 +1,14 @@
 #ifndef @UPPER_PROJECT_NAME@_DEFINES_H
 #define @UPPER_PROJECT_NAME@_DEFINES_H
-
+// didactics/core/platform/DefinesLinux.hpp
 #ifdef __APPLE__
-    #  include <@PROJECT_INCLUDE_NAME@/definesDarwin.hpp>
+    #  include <@PROJECT_INCLUDE_NAME@/core/DefinesDarwin.hpp>
     #define @NAMESPACE@_PLATFORM_APPLE
 #elif defined (__linux__)
-    #  include <@PROJECT_INCLUDE_NAME@/definesLinux.hpp>
+    #  include <@PROJECT_INCLUDE_NAME@/core/DefinesLinux.hpp>
     #define @NAMESPACE@_PLATFORM_LINUX
 #elif defined (_WIN32) || defined(_WIN64)
-    #  include <@PROJECT_INCLUDE_NAME@/definesWin32.hpp>
+    #  include <@PROJECT_INCLUDE_NAME@/core/DefinesWin32.hpp>
     #define @NAMESPACE@_PLATFORM_WINDOWS
 #else
     #error Unknown OS

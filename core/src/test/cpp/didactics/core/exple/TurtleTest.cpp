@@ -1,17 +1,17 @@
 
-#include <didactics/Test.hpp>
 #include <didactics/core/exple/TurtleTest.hpp>
 
-CPPUNIT_TEST_SUITE_NAMED_REGISTRATION(TurtleTest , didactics::core::test::runThisTestSuiteName());
+// MockTurtle * TurtleTest::objectUnderTest = nullptr;
+log4cxx::LoggerPtr TurtleTest::logger = log4cxx::Logger::getLogger(std::string("didactics.core.utils.TurtleTest"));
+
 
 TurtleTest::TurtleTest()
-    : objectUnderTest()
-    , logger(log4cxx::Logger::getLogger(std::string("diactics.core.exple.TurtleTest")))
+    : objectUnderTest(nullptr)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
-TurtleTest::TurtleTest(const TurtleTest& orig)
+TurtleTest::TurtleTest(const TurtleTest & orig)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
@@ -21,30 +21,28 @@ TurtleTest::~TurtleTest()
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
-void TurtleTest::setUp ()
+void TurtleTest::SetUp ()
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
-    this->objectUnderTest = new MockTurtle();
+    objectUnderTest = new MockTurtle();
 }
 
-void TurtleTest::tearDown ()
+void TurtleTest::TearDown ()
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
     // Verifies and removes the expectations on mock_obj; // returns true iff successful
     ::testing::Mock::VerifyAndClearExpectations(objectUnderTest);
     // Verifies and removes the expectations on mock_obj; also removes the default actions set by ON_CALL();
     ::testing::Mock::VerifyAndClear(objectUnderTest);
-    delete this->objectUnderTest;
+    delete objectUnderTest;
 }
 
-void TurtleTest::testIsActive ()
+TEST_F(TurtleTest , testIsActive)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 
     EXPECT_CALL(*objectUnderTest , IsActive()).Times(AnyNumber());
-    CPPUNIT_ASSERT_EQUAL_MESSAGE("Unexpected timer status !"
-                                , false
-                                , objectUnderTest->IsActive());
+    objectUnderTest->IsActive();
     /*
         MockTurtle object;
         EXPECT_CALL(object, IsActive()).Times(AnyNumber());
@@ -55,19 +53,17 @@ void TurtleTest::testIsActive ()
 
 }
 
-void TurtleTest::testName ()
+TEST_F(TurtleTest , testName)
 {
     /*Default Values for Custom Types*/
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 
     EXPECT_CALL(*objectUnderTest , name()).WillRepeatedly(Return(std::string("someDefaultValue")));
 
-    CPPUNIT_ASSERT_EQUAL_MESSAGE(
-        "Value mismatch !" ,
-        std::string("someDefaultValue") , objectUnderTest->name());
+    ASSERT_STREQ(std::string("someDefaultValue").c_str() , objectUnderTest->name().c_str());
 }
 
-void TurtleTest::testNameDefault ()
+TEST_F(TurtleTest , testNameDefault)
 {
     /*Default Values for Custom Types*/
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
@@ -76,9 +72,7 @@ void TurtleTest::testNameDefault ()
 
     EXPECT_CALL(*objectUnderTest , name()).Times(AnyNumber());
 
-    CPPUNIT_ASSERT_EQUAL_MESSAGE(
-        "Value mismatch !" ,
-        std::string("Some Default Value for Test") , objectUnderTest->name());
+    ASSERT_STREQ(std::string("Some Default Value for Test").c_str() , objectUnderTest->name().c_str());
 
     std::string value = "Hello World!";
 
@@ -88,13 +82,11 @@ void TurtleTest::testNameDefault ()
 
     //    LOG4CXX_DEBUG(logger,"objectUnderTest->name()" <<objectUnderTest->name());
 
-    CPPUNIT_ASSERT_EQUAL_MESSAGE(
-        "String mismatch !"
-                                , std::string("Hello World!")
-                                , objectUnderTest->name());
+    ASSERT_STREQ(std::string("Hello World!").c_str()
+                , objectUnderTest->name().c_str())<< "diagnostic message";
 }
 
-void TurtleTest::testGetY ()
+TEST_F(TurtleTest , testGetY)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
     EXPECT_CALL(*objectUnderTest , GetY())
@@ -102,17 +94,11 @@ void TurtleTest::testGetY ()
     .WillOnce(Return(400))
     .WillOnce(Return(500));
 
-    CPPUNIT_ASSERT_EQUAL_MESSAGE(
-        "Value mismatch !" ,
-        300 , objectUnderTest->GetY());
+    ASSERT_EQ(300 , objectUnderTest->GetY());
 
-    CPPUNIT_ASSERT_EQUAL_MESSAGE(
-        "Value mismatch !" ,
-        400 , objectUnderTest->GetY());
+    ASSERT_EQ(400 , objectUnderTest->GetY());
 
-    CPPUNIT_ASSERT_EQUAL_MESSAGE(
-        "Value mismatch !" ,
-        500 , objectUnderTest->GetY());
+    ASSERT_EQ(500 , objectUnderTest->GetY());
 
     int n = 10;
 
@@ -153,7 +139,7 @@ void TurtleTest::testGetY ()
 
 }
 
-void TurtleTest::testGetX ()
+TEST_F(TurtleTest , testGetX)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
     EXPECT_CALL(*objectUnderTest , GetX())
@@ -161,17 +147,11 @@ void TurtleTest::testGetX ()
     .WillOnce(Return(200))
     .WillOnce(Return(300));
 
-    CPPUNIT_ASSERT_EQUAL_MESSAGE(
-        "Value mismatch !" ,
-        100 , objectUnderTest->GetX());
+    ASSERT_EQ(100 , objectUnderTest->GetX());
 
-    CPPUNIT_ASSERT_EQUAL_MESSAGE(
-        "Value mismatch !" ,
-        200 , objectUnderTest->GetX());
+    ASSERT_EQ(200 , objectUnderTest->GetX());
 
-    CPPUNIT_ASSERT_EQUAL_MESSAGE(
-        "Value mismatch !" ,
-        300 , objectUnderTest->GetX());
+    ASSERT_EQ(300 , objectUnderTest->GetX());
 
     int n = 10;
     EXPECT_CALL(*objectUnderTest , GetX())
@@ -194,7 +174,7 @@ void TurtleTest::testGetX ()
     }
 }
 
-void TurtleTest::testGoTo ()
+TEST_F(TurtleTest , testGoTo)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 
@@ -209,7 +189,7 @@ void TurtleTest::testGoTo ()
     objectUnderTest->GoTo(0 , 0);
 }
 
-void TurtleTest::testForward ()
+TEST_F(TurtleTest , testForward)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
     /*
@@ -220,7 +200,7 @@ void TurtleTest::testForward ()
 
 }
 
-void TurtleTest::testGooglePenUp ()
+TEST_F(TurtleTest , testGooglePenUp)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
     // EXPECT_CALL(&this->objectUnderTest, PenUp()).Times(AnyNumber());
@@ -245,4 +225,24 @@ void TurtleTest::testGooglePenUp ()
          //this->objectUnderTest->PenUp();
      */
     // CPPUNIT_ASSERT(true);
+}
+
+TEST_F(TurtleTest , testCpy)
+{
+    LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
+    /*
+       MockTurtle  mock;
+       MockTurtle  mock2 = mock;
+
+       MockTurtle * mock = new MockTurtle(*this->objectUnderTest);
+       mock = this->objectUnderTest;
+       EXPECT_CALL(*mock , GetY())
+       .WillOnce(Return(37));
+
+       CPPUNIT_ASSERT_EQUAL_MESSAGE(
+        "Value mismatch !" ,
+        37 , objectUnderTest->GetY());
+       delete mock;
+     */
+
 }

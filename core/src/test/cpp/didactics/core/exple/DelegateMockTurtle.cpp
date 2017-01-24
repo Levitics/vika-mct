@@ -7,7 +7,7 @@ DelegateMockTurtle::DelegateMockTurtle()
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
-DelegateMockTurtle::DelegateMockTurtle(const DelegateMockTurtle& orig) {
+DelegateMockTurtle::DelegateMockTurtle(const DelegateMockTurtle & orig) {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
@@ -19,7 +19,7 @@ void DelegateMockTurtle::DelegateToFake ()
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 
-    // ON_CALL(*this, GetCommand( _, _ ) ).WillByDefault( Return( ERROR ));
+    // ON_CALL(*this, doSomeStuff( _, _ ) ).WillByDefault( Return( ERROR ));
     ON_CALL(*this , PenUp()).WillByDefault(testing::Invoke(&turtleNinja , &FakeTurtle::PenUp));
     ON_CALL(*this , PenDown()).WillByDefault(testing::Invoke(&turtleNinja , &FakeTurtle::PenDown));
     ON_CALL(*this , Forward(_)).WillByDefault(testing::Invoke(&turtleNinja , &FakeTurtle::Forward));

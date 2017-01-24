@@ -12,8 +12,21 @@ set(CORE_SOURCES
         didactics/core/exple/SimpleTurtleTest.cpp
         didactics/core/exple/ExtendedTurtleTest.cpp
         didactics/core/exple/TimerTest.cpp
-#        didactics/core/log/LoggerTest.cpp
-#        didactics/core/log/Hierarchy.cpp
+        didactics/core/exple/CallbackHandlerTest.cpp
+        didactics/core/chronos/ClockerStatisticsTest.cpp
+        didactics/core/chronos/HighResolutionTimerTest.cpp
+        didactics/core/chronos/ClockerTest.cpp
+        didactics/core/chronos/TimerseriesTest.cpp
+        didactics/core/chronos/TimestampTest.cpp
+        didactics/core/platform/linux/ResourceLimitTest.cpp
+        didactics/core/platform/linux/ResourceManagerTest.cpp
+        didactics/core/errorhandling/BacktraceTest.cpp
+        didactics/core/errorhandling/ErrnoMapperTest.cpp
+        didactics/core/errorhandling/ErrnoMapperMock.cpp
+        didactics/core/errorhandling/ExceptionsTest.cpp
+        didactics/core/log/LoggerTest.cpp
+        didactics/core/log/Hierarchy.cpp
+        didactics/core/log/ColorStdOuputLogMsgTest.cpp
 
 )
 
@@ -44,6 +57,11 @@ if(ENABLE_COVERAGE)
    add_coverage_targets(${PROJECT_NAME}CoreTest.bin ${PROJECT_NAME}CoreTest ${CORE_MODULE_ROOT_DIRECTORY})
 endif(ENABLE_COVERAGE)
 
+message(STATUS "CMAKE_INCLUDE_CURRENT_DIR ${CMAKE_INCLUDE_CURRENT_DIR}") 
+message(STATUS "CMAKE_CURRENT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}") 
+message(STATUS "CMAKE_CURRENT_LIST_DIR ${CMAKE_CURRENT_LIST_DIR}") 
+message(STATUS "${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR}") 
+message(STATUS "CORE_MODULE_ROOT_CMAKE_CURRENT_SOURCE_DIR ${CORE_MODULE_ROOT_CMAKE_CURRENT_SOURCE_DIR}") 
 #if(ENABLE_CPPLINT)
 #    CPPLINT_RECURSIVE(
 #        ${PROJECT_NAME}CoreTestLint                              #target_name.The name of the target to define. Your program should depend on it to invoke cpplint.
@@ -62,18 +80,8 @@ endif(ENABLE_COVERAGE)
 #)
 
 include_directories(
-    /home/happyman/NetBeansProjects/didactics/core/src/main/cpp/
-    /home/happyman/NetBeansProjects/didactics/core/src/main/cpp/didactics
-    /home/happyman/NetBeansProjects/didactics/core/src/main/cpp/didactics/core
-    /home/happyman/NetBeansProjects/didactics/core/src/main/cpp/didactics/core/callstack
-    /home/happyman/NetBeansProjects/didactics/core/src/main/cpp/didactics/core/chronos
-    /home/happyman/NetBeansProjects/didactics/core/src/main/cpp/didactics/core/exceptions
-    /home/happyman/NetBeansProjects/didactics/core/src/main/cpp/didactics/core/exple
-    /home/happyman/NetBeansProjects/didactics/core/src/main/cpp/didactics/core/log
-    /home/happyman/NetBeansProjects/didactics/core/src/main/cpp/didactics/core/socket
-    /home/happyman/NetBeansProjects/didactics/core/src/main/cpp/didactics/core/utils
+    ${CORE_MODULE_ROOT_CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp/
     ${GOOGLEMOCK_INCLUDE_DIR}
-
 )
 # message(STATUS "TEST_LIBRARIESTEST_LIBRARIESTEST_LIBRARIESTEST_LIBRARIES ${TEST_LIBRARIES}")
 #target_include_directories(${PROJECT_NAME}Core PUBLIC didactics)

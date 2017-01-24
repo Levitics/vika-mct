@@ -10,10 +10,8 @@ const std::string &didactics::core::test::runThisTestSuiteName ()
 }
 
 int didactics::core::test::execute (int argc ,
-                                    char *argv[])
+                                    char * argv[])
 {
     LOG4CXX_TRACE(didactics::core::test::logger , runThisTestSuiteName() << " " <<__LOG4CXX_FUNC__);
-    // return didactics::test::execute(ts::getTestSuiteName().c_str(),argc,argv);
     return didactics::test::execute(runThisTestSuiteName().c_str() , argc , argv);
-    // return 0;
 }

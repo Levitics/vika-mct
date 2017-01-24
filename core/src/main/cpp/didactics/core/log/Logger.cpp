@@ -19,7 +19,7 @@ Logger::Logger(unsigned long delay)
     // LOG4CXX_TRACE(LOG,"Logger::Logger");
 }
 
-Logger::Logger(const Logger& orig) {
+Logger::Logger(const Logger & orig) {
 
 }
 
@@ -55,7 +55,6 @@ bool Logger::checkLogManagerStatus ()
     return (log4cxx::LogManager::getLoggerRepository()->isConfigured());
 }
 
-
 unsigned long Logger::periodicalCheck () const
 {
     return (this->watchPeriod);
@@ -88,7 +87,7 @@ bool Logger::initLogger ()
                 configurationPath.assign(filePath);
             }
         }
-        catch (std::exception& e)
+        catch (std::exception & e)
         {
             std::cout << typeid (e).name () << ": " << e.what () << std::endl;
         }
@@ -126,20 +125,20 @@ bool Logger::initLogger ()
             {
                 if (configurationPath.substr(configurationPath.find_last_of(".") + 1).compare("xml") == 0)
                 {
-#if APR_HAS_THREADS
-                    log4cxx::xml::DOMConfigurator::configureAndWatch(configurationPath , this->periodicalCheck());
-#else
-                    cfgRootPath.append(logFileProperties);
-                    log4cxx::xml::DOMConfigurator::configure(log4cxx::File(cfgRootPath).getPath());
-#endif
+ #if APR_HAS_THREADS
+                        log4cxx::xml::DOMConfigurator::configureAndWatch(configurationPath , this->periodicalCheck());
+ #else
+                        cfgRootPath.append(logFileProperties);
+                        log4cxx::xml::DOMConfigurator::configure(log4cxx::File(cfgRootPath).getPath());
+ #endif
                 }
                 else
                 {
-#if APR_HAS_THREADS
-                    log4cxx::PropertyConfigurator::configureAndWatch(configurationPath , this->periodicalCheck());
-#else
-                    log4cxx::PropertyConfigurator::configure(cfgRootPath);
-#endif
+ #if APR_HAS_THREADS
+                        log4cxx::PropertyConfigurator::configureAndWatch(configurationPath , this->periodicalCheck());
+ #else
+                        log4cxx::PropertyConfigurator::configure(cfgRootPath);
+ #endif
                 }
 
                 // loggerPtr->trace("Logger initialized");
@@ -165,8 +164,7 @@ bool Logger::initLogger ()
     return (this->checkLogManagerStatus());
 }
 
-
-void Logger::loggerConfigure (std::string const& filename)
+void Logger::loggerConfigure (std::string const & filename)
 {
     LOG4CXX_TRACE(LOG , __LOG4CXX_FUNC__);
     // TODO: does resetConfiguration() remove existing appenders?
@@ -190,7 +188,7 @@ bool Logger::loggerReset ()
     return (true);
 }
 
-std::string Logger::getFileExtension (const std::string& s)
+std::string Logger::getFileExtension (const std::string & s)
 {
     LOG4CXX_TRACE(LOG , __LOG4CXX_FUNC__);
     size_t i = s.rfind('.' , s.length());

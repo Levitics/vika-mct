@@ -1,7 +1,7 @@
-#ifndef @NAME@_VERSION_H
-#define @NAME@_VERSION_H
+#ifndef @UPPER_PROJECT_NAME@_CORE_VERSION_HPP
+#define @UPPER_PROJECT_NAME@_CORE_VERSION_HPP
 
-#include <@INCLUDE_NAME@/Api.hpp>
+#include <@UPPER_PROJECT_NAME@/Api.hpp>
 #include <string>
 
 /*!
@@ -13,10 +13,10 @@
  */
 enum ReleaseLevel
 {
-	RELEASE_LEVEL_ALPHA        = 0xA0,/**< API is in alpha state, i.e. work in progress. */
-	RELEASE_LEVEL_BETA         = 0xB0,/**< API is in beta state, i.e. close to be finished. */
-	RELEASE_LEVEL_CANDIDATE    = 0xC0,/**< API is in release candidate state. */
-	RELEASE_LEVEL_FINAL        = 0xF0,/**< API is in final state, i.e. officially approved. */
+    RELEASE_LEVEL_ALPHA        = 0xA0,/**< API is in alpha state, i.e. work in progress. */
+    RELEASE_LEVEL_BETA         = 0xB0,/**< API is in beta state, i.e. close to be finished. */
+    RELEASE_LEVEL_CANDIDATE    = 0xC0,/**< API is in release candidate state. */
+    RELEASE_LEVEL_FINAL        = 0xF0,/**< API is in final state, i.e. officially approved. */
 };
 
 inline void noope(void)
@@ -66,7 +66,7 @@ inline void noope(void)
 /*!
  * @brief  The current binary interface.
  */
-#   define @NAMESPACE@_VERSION_ABI @PROJECT_VERSION_ABI@ull
+#   define @NAMESPACE@_VERSION_ABI @PROJECT_VERSION_ABI@
 
 /*!
  * @brief  True if the current version is newer than the given one.

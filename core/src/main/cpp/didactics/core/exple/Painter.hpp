@@ -7,8 +7,8 @@ class Painter
 public:
 
     Painter();
-    Painter(Turtle* turtle);
-    Painter(const Painter& orig);
+    Painter(Turtle * turtle);
+    Painter(const Painter & orig);
     virtual ~Painter();
     bool DrawCircle (int x , int y , int r);
 
@@ -18,4 +18,4 @@ private:
     log4cxx::LoggerPtr logger;
 };
 
-#endif    /* PAINTER_HPP */
+#endif

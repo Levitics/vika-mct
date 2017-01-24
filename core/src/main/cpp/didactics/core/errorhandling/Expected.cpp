@@ -12,22 +12,21 @@ Expected<T>::~Expected()
 }
 
 template <typename T>
-Expected<T>::Expected(const T& rhs)
+Expected<T>::Expected(const T & rhs)
     : ham(rhs)
-    , gotHam(true)
-{
+    , gotHam(true) {
 
 }
 
 template <typename T>
-Expected<T>::Expected(T&& rhs)
+Expected<T>::Expected(T && rhs)
     : ham(std::move(rhs))
     , gotHam(true)
 {
 }
 
 template <typename T>
-Expected<T>::Expected(const Expected& rhs)
+Expected<T>::Expected(const Expected & rhs)
     : gotHam(rhs.gotHam)
 {
     if (gotHam)
@@ -41,7 +40,7 @@ Expected<T>::Expected(const Expected& rhs)
 }
 
 template <typename T>
-Expected<T>::Expected(Expected&& rhs)
+Expected<T>::Expected(Expected && rhs)
     : gotHam(rhs.gotHam)
 {
     if (gotHam)
@@ -55,7 +54,7 @@ Expected<T>::Expected(Expected&& rhs)
 }
 
 template <typename T>
-void Expected<T>::swap (Expected& rhs)
+void Expected<T>::swap (Expected & rhs)
 {
     if (gotHam)
     {

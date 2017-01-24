@@ -8,7 +8,7 @@ Painter::Painter()
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
-Painter::Painter(const Painter& orig)
+Painter::Painter(const Painter & orig)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
@@ -18,7 +18,7 @@ Painter::~Painter()
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
-Painter::Painter(Turtle* trtl)
+Painter::Painter(Turtle * trtl)
     : turtle(trtl)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);

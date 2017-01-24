@@ -3,8 +3,8 @@
 #define EXPECTED_HPP
 #include <stdexcept>
 #include <typeinfo>
-template <typename T>
 
+template <typename T>
 class Expected
 {
     union
@@ -15,16 +15,16 @@ class Expected
 
 public:
 
-    Expected(const T& rhs);
-    Expected(T&& rhs);
-    Expected(const Expected& rhs);
-    Expected(Expected&& rhs);
+    Expected(const T & rhs);
+    Expected(T && rhs);
+    Expected(const Expected & rhs);
+    Expected(Expected && rhs);
     virtual ~Expected();
-    void swap (Expected& rhs);
+    void swap (Expected & rhs);
 
 
     template <class E>
-    static Expected<T> fromException (const E& exception)
+    static Expected<T> fromException (const E & exception)
     {
         if (typeid(exception) != typeid(E))
         {
@@ -50,7 +50,7 @@ public:
         return gotHam;
     }
 
-    T& get ()
+    T & get ()
     {
         if (!gotHam)
         {
@@ -60,7 +60,7 @@ public:
         return ham;
     }
 
-    const T& get () const {
+    const T & get () const {
         if (!gotHam)
         {
             std::rethrow_exception(spam);
@@ -79,7 +79,7 @@ public:
                 std::rethrow_exception(spam);
             }
         }
-        catch (const E& object)
+        catch (const E & object)
         {
             return true;
         }
@@ -101,6 +101,7 @@ public:
             return fromException();
         }
     }
+
     // auto r = Expected<std::string>::fromCode([]{...});
 
 private:

@@ -7,7 +7,7 @@ Turtle::Turtle()
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
-Turtle::Turtle(const Turtle& orig) {
+Turtle::Turtle(const Turtle & orig) {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 

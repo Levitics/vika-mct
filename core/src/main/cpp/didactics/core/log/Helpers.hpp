@@ -15,10 +15,10 @@ class Helpers
 {
 public:
 
-    Helpers(const Helpers&) = default;
-    Helpers(Helpers&&) = default;
-    Helpers& operator = (const Helpers&) = default;
-    Helpers& operator = (Helpers&&) = default;
+    Helpers(const Helpers &) = default;
+    Helpers(Helpers &&) = default;
+    Helpers & operator = (const Helpers &) = default;
+    Helpers & operator = (Helpers &&) = default;
     virtual ~Helpers() = default;
 
 private:
@@ -26,7 +26,7 @@ private:
 };
 
 template<class T>
-inline std::string to_string (const T& value) {
+inline std::string to_string (const T & value) {
 
     std::ostringstream streamOut;
     streamOut << value;
@@ -35,7 +35,7 @@ inline std::string to_string (const T& value) {
 }
 
 template<class T>
-inline std::string to_string_with_leading_zeros (const T& value ,
+inline std::string to_string_with_leading_zeros (const T & value ,
                                                  unsigned num_zeros) {
 
     std::ostringstream streamOut;
@@ -45,7 +45,7 @@ inline std::string to_string_with_leading_zeros (const T& value ,
 }
 
 template<class T>
-inline T from_string (const std::string& string) {
+inline T from_string (const std::string & string) {
 
     std::istringstream streamIn(string);
     T value;
@@ -54,7 +54,6 @@ inline T from_string (const std::string& string) {
 
     return value;
 }
-
 
 template<class T , class U>
 std::vector<T>operator + (std::vector<T> lhs ,
@@ -68,6 +67,7 @@ std::vector<T>operator + (std::vector<T> lhs ,
 
     return result;
 }
+
 //
 // template<class T, class U>
 // std::vector<T> operator+(std::vector<T>& lhs, std::vector<U>& rhs) {
@@ -80,8 +80,8 @@ std::vector<T>operator + (std::vector<T> lhs ,
 // }
 
 template<class T , class U>
-std::vector<T>&operator += (std::vector<T>& lhs ,
-                            std::vector<U>& rhs) {
+std::vector<T> &operator += (std::vector<T> & lhs ,
+                             std::vector<U> & rhs) {
 
     assert(lhs.size() == rhs.size());
 
@@ -105,8 +105,8 @@ std::vector<T>operator - (std::vector<T> lhs ,
 }
 
 template<class T , class U>
-std::vector<T>&operator -= (std::vector<T>& lhs ,
-                            std::vector<U>& rhs) {
+std::vector<T> &operator -= (std::vector<T> & lhs ,
+                             std::vector<U> & rhs) {
 
     assert(lhs.size() == rhs.size());
 
@@ -117,8 +117,8 @@ std::vector<T>&operator -= (std::vector<T>& lhs ,
 }
 
 template<class T>
-T operator * (std::vector<T>& lhs ,
-              std::vector<T>& rhs) {
+T operator * (std::vector<T> & lhs ,
+              std::vector<T> & rhs) {
 
     assert(lhs.size() == rhs.size());
     T result = 0.0;
@@ -140,7 +140,7 @@ std::vector<T>operator * (std::vector<T> lhs ,
 }
 
 template<class T , class U>
-std::vector<T>operator * (std::vector<T>& lhs ,
+std::vector<T>operator * (std::vector<T> & lhs ,
                           U rhs) {
 
     for (int i = 0; i < lhs.size(); i++)
@@ -150,8 +150,8 @@ std::vector<T>operator * (std::vector<T>& lhs ,
 }
 
 template<class T , class U>
-std::vector<T>&operator *= (std::vector<T>& lhs ,
-                            U rhs) {
+std::vector<T> &operator *= (std::vector<T> & lhs ,
+                             U rhs) {
 
     for (int i = 0; i < lhs.size(); i++)
         lhs[i] *= rhs;
@@ -160,8 +160,8 @@ std::vector<T>&operator *= (std::vector<T>& lhs ,
 }
 
 template<class T , class U>
-std::vector<T>operator / (std::vector<T>& lhs ,
-                          U& rhs) {
+std::vector<T>operator / (std::vector<T> & lhs ,
+                          U & rhs) {
 
     std::vector<T> result;
 
@@ -172,7 +172,7 @@ std::vector<T>operator / (std::vector<T>& lhs ,
 }
 
 template<class T , class U>
-std::vector<T>operator / (std::vector<T>& lhs ,
+std::vector<T>operator / (std::vector<T> & lhs ,
                           U rhs) {
 
     std::vector<T> result;
@@ -184,8 +184,8 @@ std::vector<T>operator / (std::vector<T>& lhs ,
 }
 
 template<class T , class U>
-std::vector<T>&operator /= (std::vector<T>& lhs ,
-                            U& rhs) {
+std::vector<T> &operator /= (std::vector<T> & lhs ,
+                             U & rhs) {
 
     for (int i = 0; i < lhs.size(); i++)
         lhs[i] /= rhs;
@@ -194,8 +194,8 @@ std::vector<T>&operator /= (std::vector<T>& lhs ,
 }
 
 template<class T , class U>
-std::vector<T>&operator /= (std::vector<T>& lhs ,
-                            U rhs) {
+std::vector<T> &operator /= (std::vector<T> & lhs ,
+                             U rhs) {
 
     for (int i = 0; i < lhs.size(); i++)
         lhs[i] /= rhs;
@@ -206,8 +206,8 @@ std::vector<T>&operator /= (std::vector<T>& lhs ,
 // namespace std {
 
 template<class T>
-std::ostream&operator << (std::ostream& os ,
-                          const std::vector<T>& vector) {
+std::ostream &operator << (std::ostream & os ,
+                           const std::vector<T> & vector) {
 
     os << "[";
 
@@ -225,8 +225,8 @@ std::ostream&operator << (std::ostream& os ,
 }
 
 template<class T>
-std::ostream&operator << (std::ostream& os ,
-                          const std::set<T>& set) {
+std::ostream &operator << (std::ostream & os ,
+                           const std::set<T> & set) {
 
     os << "{";
 

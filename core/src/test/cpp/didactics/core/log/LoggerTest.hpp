@@ -1,34 +1,25 @@
 
 #ifndef LOGGERTEST_HPP
 #define LOGGERTEST_HPP
-#include <cppunit/TestFixture.h>
-#include <cppunit/extensions/HelperMacros.h>
+#include <gtest/gtest.h>
 #include <didactics/core/log/Hierarchy.hpp>
-class LoggerTest : public CppUnit::TestFixture
+class LoggerTest  : public ::testing::Test
 {
-    CPPUNIT_TEST_SUITE(LoggerTest);
-    CPPUNIT_TEST(dummy);
-    CPPUNIT_TEST_SUITE_END();
-
 public:
 
     LoggerTest();
-    LoggerTest(const LoggerTest& orig);
+    LoggerTest(const LoggerTest & orig);
     virtual ~LoggerTest();
     /**
      * @brief Test set up.
      */
-    void setUp ();
+    virtual void SetUp ();
     /**
      * @brief Test tear down.
      */
-    void tearDown ();
+    virtual void TearDown ();
 
 protected:
-
-    void dummy ();
-
-private:
 
     cxx::ThreadedLogging * threadedLogging;
     cxx::Hierarchy * hierarchy;
@@ -40,7 +31,10 @@ private:
     /*!
      * @brief Test class logger.
      */
-    static log4cxx::LoggerPtr logger;
+    log4cxx::LoggerPtr logger;
+
+private:
+
 };
 
 #endif

@@ -7,7 +7,7 @@ class FakeTurtle : public Turtle
 public:
 
     FakeTurtle();
-    FakeTurtle(const FakeTurtle& orig);
+    FakeTurtle(const FakeTurtle & orig);
     virtual ~FakeTurtle();
 
     virtual void PenUp ();

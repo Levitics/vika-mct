@@ -59,7 +59,7 @@
 namespace intternalUse
 {
     // File* getStdStream(const std::ostream& stream);
-    bool isAtty (const std::ostream& stream);
+    bool isAtty (const std::ostream & stream);
 }
 
 class Logger
@@ -67,16 +67,18 @@ class Logger
 public:
 
     Logger(unsigned long delay = 60000L);
-    Logger(const Logger& orig);
+    Logger(const Logger & orig);
     Logger(const std::string & logFileProperties , std::string path = "/etc/cfg");
     Logger(const std::string &name)
         : mLogger(log4cxx::Logger::getLogger(name))
     {
     }
+
     log4cxx::LoggerPtr operator = (const Logger &logger)
     {
         return mLogger;
     }
+
     virtual ~Logger();
     log4cxx::LoggerPtr operator -> (void)
     {
@@ -87,10 +89,11 @@ public:
      * @brief  Retrieve a particular logger by name
      */
     template <typename S>
-    log4cxx::LoggerPtr getLogger (const S& name)
+    log4cxx::LoggerPtr getLogger (const S & name)
     {
         return log4cxx::Logger::getLogger(name);
     }
+
     /*!
      * @brief Retrieve a particular logger by name with
      *        possibility of returning default initialized logger_types.
@@ -100,24 +103,26 @@ public:
     {
         return name ? log4cxx::Logger::getLogger(name) : log4cxx::LoggerPtr();
     }
+
     /*!
      * @brief Retrieve a descendent of a particular logger by name
      */
     template <typename S , typename T>
-    log4cxx::LoggerPtr getLogger (const S& name ,
-                                  const T& child)
+    log4cxx::LoggerPtr getLogger (const S & name ,
+                                  const T & child)
     {
         std::string s(name);
         s.append(1 , '.');
         s.append(child);
         return log4cxx::Logger::getLogger(s);
     }
+
     /*!
      * @brief Retrieve a descendent of a particular logger by name
      */
     template <typename T>
-    log4cxx::LoggerPtr getLogger (log4cxx::LoggerPtr& logger ,
-                                  const T& child)
+    log4cxx::LoggerPtr getLogger (log4cxx::LoggerPtr & logger ,
+                                  const T & child)
     {
         std::string s;
         logger->getName(s);
@@ -125,19 +130,22 @@ public:
         s.append(child);
         return log4cxx::Logger::getLogger(s);
     }
-    log4cxx::LoggerPtr&getLogger (log4cxx::LoggerPtr& logger)
+
+    log4cxx::LoggerPtr &getLogger (log4cxx::LoggerPtr & logger)
     {
         return logger;
     }
+
     /*!
      * @brief Idempotent overload of get_logger() to aid macro definitions
      */
 
-    log4cxx::LoggerPtr&getLogger (log4cxx::LoggerPtr & ,
-                                  log4cxx::LoggerPtr& child)
+    log4cxx::LoggerPtr &getLogger (log4cxx::LoggerPtr & ,
+                                   log4cxx::LoggerPtr & child)
     {
         return child;
     }
+
     /*! @brief Configures log4cxx using FILENAME and initializes logging module by
      * invoking initLog(). If FILENAME ends with ".xml", it is passed to
      * log4cxx::xml::DOMConfigurator::configure(). Otherwise, it assumed to be
@@ -147,7 +155,7 @@ public:
      *
      * @param filename  Path to configuration file.
      */
-    void loggerConfigure (std::string const& filename);
+    void loggerConfigure (std::string const & filename);
     //    void initLog ()
     //    {
     //        // Default logger initially set to root logger
@@ -169,7 +177,7 @@ private:
     static const char * configEnv;
     log4cxx::LoggerPtr mLogger;
     bool checkLogManagerStatus ();
-    std::string getFileExtension (const std::string& s);
+    std::string getFileExtension (const std::string & s);
 
     /*!
      *  @brief Value for periodical check if configFilename has been created or modified!

@@ -7,7 +7,7 @@ MockTurtle::MockTurtle()
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
-MockTurtle::MockTurtle(const MockTurtle& orig) {
+MockTurtle::MockTurtle(const MockTurtle & orig) {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 

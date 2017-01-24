@@ -7,7 +7,7 @@ Timer::Timer()
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 
-Timer::Timer(const Timer& orig) {
+Timer::Timer(const Timer & orig) {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 }
 

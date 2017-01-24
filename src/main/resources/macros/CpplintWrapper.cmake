@@ -25,6 +25,76 @@ endif(PYTHONINTERP_FOUND)
 # Followings are our coding convention.
 set(LINT_FILTER) # basically everything Google C++ Style recommends. Except...
 
+#  set(LINT_FILTER ${LINT_FILTER}-build/class,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/c++11,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/c++14,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/c++tr1,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/deprecated,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/endif_comment,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/explicit_make_pair,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/forward_decl,)
+  set(LINT_FILTER ${LINT_FILTER}-build/header_guard,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/include,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/include_subdir,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/include_alpha,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/include_order,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/include_what_you_use,)
+  set(LINT_FILTER ${LINT_FILTER}-build/namespaces_literals,)
+  set(LINT_FILTER ${LINT_FILTER}-build/namespaces,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/printf_format,)
+#  set(LINT_FILTER ${LINT_FILTER}-build/storage_class,)
+  set(LINT_FILTER ${LINT_FILTER}-legal/copyright,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/alt_tokens,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/braces,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/casting,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/check,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/constructors,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/fn_size,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/inheritance,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/multiline_comment,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/multiline_string,)
+  set(LINT_FILTER ${LINT_FILTER}-readability/namespace,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/nolint,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/nul,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/strings,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/todo,)
+#  set(LINT_FILTER ${LINT_FILTER}-readability/utf8,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/arrays,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/casting,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/explicit,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/int,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/init,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/invalid_increment,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/member_string_references,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/memset,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/indentation_namespace,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/operator,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/printf,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/printf_format,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/references,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/string,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/threadsafe_fn,)
+#  set(LINT_FILTER ${LINT_FILTER}-runtime/vlog,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/blank_line,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/braces,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/comma,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/comments,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/empty_conditional_body,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/empty_if_body,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/empty_loop_body,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/end_of_line,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/ending_newline,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/forcolon,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/indent,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/line_length,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/newline,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/operators,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/parens,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/semicolon,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/tab,)
+#  set(LINT_FILTER ${LINT_FILTER}-whitespace/todo,)
+
+
 # This the only rule cpplint.py disables by default. Enable it.
 # However, the default implementation of build/include_alpha in cpplint.py is a bit sloppy.
 # It doesn't correctly take care of "/" in include.
@@ -43,6 +113,7 @@ set(LINT_FILTER) # basically everything Google C++ Style recommends. Except...
 # set(LINT_FILTER ${LINT_FILTER},-build/include_order)
 
 # disable unwanted filters
+#set(LINT_FILTER ${LINT_FILTER}-legal/copyright,)
 #set(LINT_FILTER ${LINT_FILTER}-whitespace/braces,)
 #set(LINT_FILTER ${LINT_FILTER}-whitespace/semicolon,)
 #set(LINT_FILTER ${LINT_FILTER}-whitespace/blank_line,)
@@ -60,6 +131,7 @@ set(LINT_FILTER) # basically everything Google C++ Style recommends. Except...
 #
 #set(LINT_FILTER ${LINT_FILTER}-readability/streams,)
 #set(LINT_FILTER ${LINT_FILTER}-readability/todo,)
+#set(LINT_FILTER ${LINT_FILTER}-readability/casting,)
 #
 #set(LINT_FILTER ${LINT_FILTER}-runtime/references,)
 #set(LINT_FILTER ${LINT_FILTER}-runtime/int,)
@@ -101,16 +173,23 @@ function(CPPLINT_RECURSIVE target_name src_folder root_folder)
                          COMMAND
                             ${PYTHON_EXECUTABLE} ${LINT_WRAPPER}
                             --cpplint-file=${LINT_SCRIPT}
-                            --history-file=${WORKING_DIR}/.lint_history
+                            --history-file=${WORKING_DIR}/lint_history
                             --linelength=${LINT_LINELENGTH}
 #                            --extensions=cpp,hpp
                             --filter=${LINT_FILTER}
-                            --root=${root_folder}
+                            --root=cpp
+#                            --repository=didactics #${src_folder}
+                            --output=junit
+#                            --style-error
+#                            --recursive
+#                            --counting=total
+                            --counting=detailed
                             --verbose=5
-                            --root==DIDACTICS
+#                            --root=DIDACTICS
                             ${src_folder}
+#                            > ${WORKING_DIR}/lint.xml 2>&1
                          WORKING_DIRECTORY ${WORKING_DIR}
-                         COMMENT "[CPPLINT-Target:${target_name}] ${src_folder}"
+                         COMMENT "[CPPLINT-Target:${target_name}] ${WORKING_DIR}"
             )
         endif()
     else(RUN_CPPLINT)

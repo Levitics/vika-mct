@@ -13,11 +13,11 @@
 #include <didactics/Test.hpp>
 
 log4cxx::LoggerPtr didactics::test::logger = log4cxx::Logger::getLogger(std::string("didactics.test"));
-
-int didactics::test::run (int argc ,
-                          char *argv[] ,
+/*
+   int didactics::test::run (int argc ,
+                          char * argv[] ,
                           const char * const suite)
-{
+   {
     std::string testPath = (argc > 1) ? std::string(argv[1]) : std::string("");
     CPPUNIT_NS::TestResult controller;
 
@@ -54,12 +54,72 @@ int didactics::test::run (int argc ,
         return 0;
     }
     return result.wasSuccessful() ? 0 : 1;
+   }
+ */
+
+int didactics::test::runTests (int iteration)
+{
+    switch (iteration)
+    {
+    case 1 :
+        ::testing::GTEST_FLAG(filter) = "*first*:*second*";
+        break;
+
+    case 2 :
+        ::testing::GTEST_FLAG(filter) = "*third*:*fourth*";
+        break;
+
+    default :
+        ::testing::GTEST_FLAG(filter) = "*";
+        break;
+    }
+
+    ::testing::GTEST_FLAG(repeat) = iteration;
 }
 
 int didactics::test::launch (const std::string & suite ,
                              int argc ,
-                             char *argv[])
+                             char * argv[])
 {
+    LOG4CXX_TRACE(didactics::test::logger , "launch " <<suite <<" " <<__LOG4CXX_FUNC__);
+    ::testing::GTEST_FLAG(output) = "xml:Report.xml"; // GTEST_FLAG(output) = "xml:" + path;
+    ::testing::FLAGS_gmock_verbose = "verbose";
+
+    //    ::testing::GTEST_FLAG(print_time) = false;
+    try
+    {
+        LOG4CXX_TRACE(didactics::test::logger , "Innitializing google mock");
+        ::testing::InitGoogleTest(&argc , argv);
+        ::testing::InitGoogleMock(&argc , argv);
+    }
+    catch (std::exception & e)
+    {
+        LOG4CXX_ERROR(didactics::test::logger ,
+                      "Issues while innitializing test environment" << typeid (e).name () << ": " << e.what () );
+    }
+    catch (...)
+    {
+        LOG4CXX_FATAL(didactics::test::logger , "Unhandled exception");
+    }
+
+    const ::testing::TestInfo * const testInfo = ::testing::UnitTest::GetInstance()->current_test_info();
+    //    LOG4CXX_TRACE(didactics::test::logger , ">>>>>>>>!!!!Test Name!!!!>>>>>>>> ("
+    //                << testInfo->name() <<")");
+    //
+    //    LOG4CXX_TRACE(didactics::test::logger , ">>>>>>>>!!!!Test Case Name!!!!>>>>>>>> ("
+    //                << testInfo->test_case_name() <<")");
+
+    //    LOG4CXX_TRACE(didactics::test::logger , ">>>>>>>>!!!!Star running unit test!!!!>>>>>>>> ("
+    //                << ::testing::UnitTest::GetInstance()->test_case_to_run_count() <<")");
+    //    LOG4CXX_TRACE(didactics::test::logger , "Running unit test" <<  ::testing::UnitTest::GetInstance()->current_test_info());
+    return RUN_ALL_TESTS();
+}
+
+/*
+   int didactics::test::launch (const std::string & suite ,
+                             int argc ,
+                             char * argv[])
+   {
     LOG4CXX_TRACE(didactics::test::logger , "launch " <<suite <<" " <<__LOG4CXX_FUNC__);
 
 
@@ -74,7 +134,7 @@ int didactics::test::launch (const std::string & suite ,
         LOG4CXX_TRACE(didactics::test::logger , "Innitializing google mock");
         ::testing::InitGoogleMock(&argc , argv);
     }
-    catch (std::exception& e)
+    catch (std::exception & e)
     {
         LOG4CXX_ERROR(didactics::test::logger ,
                       "Issues while innitializing google mock" << typeid (e).name () << ": " << e.what () );
@@ -92,17 +152,26 @@ int didactics::test::launch (const std::string & suite ,
     //    std::ofstream xmlFile("cppunit-test-result2.xml");
     //    CPPUNIT_NS::XmlOutputter xmlOutputter(&(runner.result()) , xmlFile);
     //     XmlOutputterHook hook;
+    //     xml.setStyleSheet( "report.xsl" );
     //     xmlOutputter.addHook(&hook);
     //     xmlOutputter.write();
     //     xmlFile.close();
 
     LOG4CXX_TRACE(didactics::test::logger , "<<<<<<<<!!!!Unit test ended!!!!<<<<<<<<");
+
+    // trInfo.push_back(std::make_pair( runner.result().testFailuresTotal(), runner.result().runTests()));
+    LOG4CXX_INFO(didactics::test::logger , " Failed : "<<runner.result().testFailuresTotal()
+                                                       <<" ("<< runner.result().runTests() <<")"
+                                                       " Errors : "<<runner.result().testErrors()<<
+                 " Failures: " <<runner.result().testFailures()
+                 );
     return (runner.result().testFailuresTotal());
-}
+   }
+ */
 
 int didactics::test::execute (const char * const suite ,
                               int argc ,
-                              char *argv[])
+                              char * argv[])
 {
     LOG4CXX_TRACE(didactics::test::logger , __LOG4CXX_FUNC__ );
     // std::string testname(ts::getTestSuiteName());

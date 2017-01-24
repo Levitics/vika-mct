@@ -1,4 +1,4 @@
-message ("Builidng APR in ${TARGET_BUILD_DIRECTORY}")
+#message ("Builidng APR in ${TARGET_BUILD_DIRECTORY}")
 
 set(APR_SOURCE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/apr-1.5.2)
 set(APR_BUILD_DIRECTORY ${TARGET_BUILD_DIRECTORY}/apr-build)
@@ -8,12 +8,12 @@ set(APR_INCLUDE_DIRECTORY ${APR_SOURCE_DIRECTORY}/include)
 set(APR_LIBS_DIRECTORY ${APR_BUILD_DIRECTORY}/.libs)
 
 file(MAKE_DIRECTORY
-  ${APR_BUILD_DIRECTORY}/include/private
-  ${APR_SOURCE_DIRECTORY}/include/private
+    ${APR_BUILD_DIRECTORY}/include/private
+    ${APR_SOURCE_DIRECTORY}/include/private
 )
 
 file(COPY ${APR_SOURCE_DIRECTORY}/tools/gen_test_char.c
-  DESTINATION ${APR_BUILD_DIRECTORY}/tools
+    DESTINATION ${APR_BUILD_DIRECTORY}/tools
 )
 
 set(CONFIGURE_FLAGS "")
@@ -39,6 +39,7 @@ add_custom_command(OUTPUT ${APR_BUILD_DIRECTORY}/include/private/apr_escape_test
 add_custom_target(libapr-1 ALL make
     DEPENDS ${APR_BUILD_DIRECTORY}/include/private/apr_escape_test_char.h
     WORKING_DIRECTORY ${APR_BUILD_DIRECTORY}
+    COMMENT "Building APR librarry"
 )
 
 #add_custom_target(apr-1 ALL make
@@ -67,6 +68,8 @@ install(
   USE_SOURCE_PERMISSIONS
   FILES_MATCHING PATTERN *.h
 )
+
+mark_as_advanced( FORCE APR_LIBS_DIRECTORY APR_INCLUDE_DIRECTORY APR_BUILD_DIRECTORY)
 
 #add_custom_command(
 #        TARGET ${PROJECT_NAME}

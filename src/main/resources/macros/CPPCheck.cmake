@@ -70,7 +70,10 @@ function(ADD_CPPCHECK_ANALYSIS target_name bin_folder)
         )
 
     else(RUN_CPPCHECK)
-        add_custom_target(${target_name}-cppcheck COMMAND ${CMAKE_COMMAND} -E echo "No Static Code analysis done")
+        add_custom_target(
+            ${target_name}-cppcheck 
+            COMMAND ${CMAKE_COMMAND} -E echo "No Static Code analysis done"
+        )
     endif(RUN_CPPCHECK)
 
     if(NOT TARGET cppcheck)
