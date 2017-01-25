@@ -212,18 +212,24 @@ include(CommonCoverage)
 #    )
 #endif()
 
-#if(ENABLE_QA_CHECK)
-#    if(NOT TARGET qa-check)
-#        ADD_CUSTOM_TARGET(qa-check
-#            COMMENT "Software quality assurance: Style -> CPPCheck -> Cyclomatic -> CPPlint -> Coverage"
-#        )
-#        add_dependencies(qa-check coverage style cppcheck cyclomatic lint)
-#    endif(NOT TARGET qa-check)
-#else(ENABLE_QA_CHECK)
-#    add_custom_target(qa-check 
-#        COMMAND ${CMAKE_COMMAND} -E echo "Software quality assurance disabled"
-#    )
-#endif(ENABLE_QA_CHECK)
+if(ENABLE_QA_CHECK)
+    if(NOT TARGET qacheck)
+        ADD_CUSTOM_TARGET(qacheck
+            COMMENT "Software quality assurance: Style -> checkstyle -> CPPCheck -> Cyclomatic -> CPPlint -> Coverage"
+        )
+        add_dependencies(qacheck cppcheck lint cyclomatic coverage )#style )
+    endif(NOT TARGET qacheck)
+	
+    add_definitions(-DENABLE_CPPLINT=ON 
+                    -DENABLE_FORMATING_STYLE=ON  
+                    -DENABLE_CPPCHECK=ON 
+                    -DENABLE_CYCLOMATIC_COMPLEXITY=ON 
+    )
+else(ENABLE_QA_CHECK)
+    add_custom_target(qacheck 
+        COMMAND ${CMAKE_COMMAND} -E echo "Software quality assurance disabled"
+    )
+endif(ENABLE_QA_CHECK)
 
 include(CTest)
 enable_testing ()
